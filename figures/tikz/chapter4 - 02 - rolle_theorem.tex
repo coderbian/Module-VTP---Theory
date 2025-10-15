@@ -1,0 +1,57 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xlabel=$x$,
+            ylabel=$y$,
+            % ticks đặt tại a, c, b
+            xtick={1.6,3.3,6.4},
+            xticklabels={$a$, $c$, $b$},
+            % y-tick cho f(a)=f(b)
+            ytick={2.0},
+            yticklabels={$f(a)=f(b)$},
+            ymin=0, ymax=5,
+            xmin=0, xmax=7.6,
+            width=12cm,
+            height=7cm,
+            clip=false,
+            every axis x label/.style={at={(axis description cs:1,0.05)},anchor=north west},
+            every axis y label/.style={at={(axis description cs:0.02,1)},anchor=south west},
+        ]
+
+        % --- đường cong f(x) (dùng coordinates để đảm bảo A,P,B chính xác)
+        % A=(1.6,2.0), P=(3.3,3.2), B=(6.4,2.0)
+        \addplot[myblue, very thick, smooth, samples=200] coordinates {
+            (1.6,2.0) (2.2,2.6) (2.7,3.0)
+            (3.0,3.18) (3.3,3.2) (3.6,3.18) (4.2,2.9) (4.9,2.6)
+            (5.6,2.25) (6.0,2.08) (6.4,2.0)
+        };
+
+        % --- vẽ điểm A, P, B (điểm đen)
+        \addplot+[only marks, mark=*, mark size=1.8pt] coordinates {
+            (1.6,2.0) (3.3,3.2) (6.4,2.0)
+        };
+        \node[above left,font=\small]  at (axis cs:1.6,2.0) {A};
+        \node[above,font=\small]       at (axis cs:3.3,3.2) {P};
+        \node[above right,font=\small] at (axis cs:6.4,2.0) {B};
+
+        % --- tiếp tuyến tại P (đường thẳng ngang, màu hồng)
+        \draw[line width=1.6pt, color=magenta] (axis cs:1.9,3.2) -- (axis cs:4.7,3.2);
+
+        % --- đường gióng đứt nét: verticals từ a,c,b lên đồ thị
+        \draw[dashed] (axis cs:1.6,0) -- (axis cs:1.6,2.0);
+        \draw[dashed] (axis cs:3.3,0) -- (axis cs:3.3,3.2);
+        \draw[dashed] (axis cs:6.4,0) -- (axis cs:6.4,2.0);
+
+        % --- đường ngang đứt nét cho f(a)=f(b)
+        \draw[dashed] (axis cs:0,2.0) -- (axis cs:6.4,2.0);
+
+        % --- thêm các nét nhỏ trên trục y để biểu diễn tick alignment (như hình)
+        \draw (-0.06,2.0) -- (0.06,2.0);
+
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\centering Minh họa Định lý Rolle: nhìn vào hình ta thấy khi $A$ và $B$ có cùng tung độ, thì động tại tiếp tuyến với một điểm ``ở giữa" đồ thị và song song với $AB$ (đường thẳng nằm ngang đi qua P)}
+    \label{fig:rolle-theorem}
+\end{figure}

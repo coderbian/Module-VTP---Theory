@@ -1,0 +1,50 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xlabel=$x$,
+            ylabel=$y$,
+            xtick={-3, -1, 1, 2, 4},
+            xticklabels={$a$, $b$, $c$, $d$, $e$},
+            ytick={-1.5, -1, 1, 3.5, 5},
+            yticklabels={},
+            ymin=-2, ymax=6,
+            xmin=-4, xmax=5,
+            width=12cm,
+            height=8cm,
+        ]
+        \addplot[smooth, thick, myblue, domain=-3:1] {
+            -1/4*x^3 + 3/8*x^2+3/2*x-5/8
+        } node[pos=0.9, right] {};
+        \addplot[smooth, thick, myblue, domain=1:3.5] {
+            2*x^2 - 8*x + 7
+        } node[pos=0.9, right] {};
+        % \addplot[smooth, thick, myblue, domain=-3.5:2] {
+        %     -0.1x^3 - 3x^2
+        % };
+
+        % Các điểm cực trị
+        \node[circle, fill=myblue, inner sep=1.5pt] at (axis cs:-3, 5) {};
+        \node[circle, fill=myblue, inner sep=1.5pt] at (axis cs:-1, -1.5) {};
+        \node[circle, fill=myblue, inner sep=1.5pt] at (axis cs:1, 1) {};
+        \node[circle, fill=myblue, inner sep=1.5pt] at (axis cs:2, -1) {};
+        \node[circle, fill=myblue, inner sep=1.5pt] at (axis cs:3.5, 3.5) {};
+
+        % Đường gióng
+        \draw[dashed] (axis cs:-3, 0) -- (axis cs:-3, 5) -- (axis cs:0, 5);
+        \draw[dashed] (axis cs:-1, 0) -- (axis cs:-1, -1.5) -- (axis cs:0, -1.5);
+        \draw[dashed] (axis cs:1, 0) -- (axis cs:1, 1) -- (axis cs: 0, 1);
+        \draw[dashed] (axis cs:2, 0) -- (axis cs:2, -1) -- (axis cs:0, -1);
+        \draw[dashed] (axis cs:3.5, 0) -- (axis cs:3.5, 3.5) -- (axis cs:0, 3.5);
+
+        \node at (axis cs: 0, 5) [right] {$f(a)$};
+        \node at (axis cs:0, 3.5) [left] {$f(e)$};
+        \node at (axis cs: 0, 1) [left] {$f(c)$};
+        \node at (axis cs: 0, -1.5) [right] {$f(b)$};
+        \node at (axis cs: 0, -1) [above right] {$f(d)$};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\centering Cực tiểu tuyệt đối $f(b)$, không có cực đại tuyệt đối, cực tiểu địa phương $f(b)$ và $f(d)$, cực đại địa phương $f(c)$.}
+    \label{fig:extrema-example}
+\end{figure}

@@ -1,0 +1,141 @@
+
+% --- Bắt đầu môi trường hình ảnh ---
+\begin{figure}[!h]
+    \centering % Căn giữa hình ảnh
+    \begin{tikzpicture}[
+        % --- CÁC THIẾT LẬP CHUNG (BẠN CÓ THỂ CHỈNH SỬA Ở ĐÂY) ---
+        scale=0.85, % Tỉ lệ tổng thể của hình vẽ
+        transform shape,
+        % Định nghĩa style cho các tập hợp (hình ellipse)
+        set/.style={
+            rectangle, 
+            draw, % Vẽ đường viền
+            minimum width=2.5cm, 
+            minimum height=4cm,
+            line width=0.5pt % Độ dày đường viền
+        },
+        % Định nghĩa style cho các phần tử (chấm tròn)
+        element/.style={
+            circle, 
+            fill, % Tô màu brown
+            brown,
+            inner sep=1.5pt % Kích thước của chấm
+        },
+        % Định nghĩa style cho các mũi tên
+        arrow/.style={
+            ->, % Kiểu mũi tên
+            thick, % Độ dày mũi tên
+            >=stealth % Kiểu đầu mũi tên
+        }
+    ]
+
+    % --- HÀNG 1, CỘT 1: ÁNH XẠ THƯỜNG ---
+    \begin{scope}[xshift=0cm, yshift=0cm]
+        % Vẽ tập nguồn X và tập đích Y
+        \node[set] (X1) at (0,0) {};
+        \node[set] (Y1) at (4,0) {};
+        \node at (0, 2.5) {$X$}; % Nhãn cho tập X
+        \node at (4, 2.5) {$Y$}; % Nhãn cho tập Y
+        
+        % Các phần tử trong tập X
+        \node[element] (x1a) at (0, 1) {};
+        \node[element] (x1b) at (0, 0) {};
+        \node[element] (x1c) at (0, -1) {};
+
+        % Các phần tử trong tập Y
+        \node[element] (y1a) at (4, 1.5) {};
+        \node[element] (y1b) at (4, 0) {};
+        \node[element] (y1c) at (4, -1.5) {};
+        
+        % Vẽ các mũi tên ánh xạ
+        \draw[arrow] (x1a) to (y1a);
+        \draw[arrow] (x1b) to (y1b);
+        \draw[arrow] (x1c) to (y1b); % Hai phần tử cùng trỏ đến y1b
+        
+        % Chú thích cho hình
+        \node at (2, -2.8) {\textbf{Ánh xạ}};
+    \end{scope}
+
+    % --- HÀNG 1, CỘT 2: ĐƠN ÁNH ---
+    \begin{scope}[xshift=8cm, yshift=0cm]
+        % Vẽ tập nguồn X và tập đích Y
+        \node[set] (X2) at (0,0) {};
+        \node[set] (Y2) at (4,0) {};
+        \node at (0, 2.5) {$X$};
+        \node at (4, 2.5) {$Y$};
+        
+        % Các phần tử trong tập X
+        \node[element] (x2a) at (0, 1) {};
+        \node[element] (x2b) at (0, -1) {};
+
+        % Các phần tử trong tập Y
+        \node[element] (y2a) at (4, 1.5) {};
+        \node[element] (y2b) at (4, 0) {};
+        \node[element] (y2c) at (4, -1.5) {};
+        
+        % Vẽ các mũi tên ánh xạ
+        \draw[arrow] (x2a) to (y2a);
+        \draw[arrow] (x2b) to (y2c); % Mỗi phần tử X trỏ đến 1 phần tử Y riêng biệt
+        
+        % Chú thích cho hình
+        \node at (2, -2.8) {\textbf{Đơn ánh}};
+    \end{scope}
+
+    % --- HÀNG 2, CỘT 1: TOÀN ÁNH ---
+    \begin{scope}[xshift=0cm, yshift=-6cm]
+        % Vẽ tập nguồn X và tập đích Y
+        \node[set] (X3) at (0,0) {};
+        \node[set] (Y3) at (4,0) {};
+        \node at (0, 2.5) {$X$};
+        \node at (4, 2.5) {$Y$};
+        
+        % Các phần tử trong tập X
+        \node[element] (x3a) at (0, 1.5) {};
+        \node[element] (x3b) at (0, 0) {};
+        \node[element] (x3c) at (0, -1.5) {};
+
+        % Các phần tử trong tập Y
+        \node[element] (y3a) at (4, 1) {};
+        \node[element] (y3b) at (4, -1) {};
+        
+        % Vẽ các mũi tên ánh xạ
+        \draw[arrow] (x3a) to (y3a);
+        \draw[arrow] (x3b) to (y3b);
+        \draw[arrow] (x3c) to (y3a); % Mọi phần tử Y đều có tiền ảnh
+        
+        % Chú thích cho hình
+        \node at (2, -2.8) {\textbf{Toàn ánh}};
+    \end{scope}
+
+    % --- HÀNG 2, CỘT 2: SONG ÁNH ---
+    \begin{scope}[xshift=8cm, yshift=-6cm]
+        % Vẽ tập nguồn X và tập đích Y
+        \node[set] (X4) at (0,0) {};
+        \node[set] (Y4) at (4,0) {};
+        \node at (0, 2.5) {$X$};
+        \node at (4, 2.5) {$Y$};
+        
+        % Các phần tử trong tập X
+        \node[element] (x4a) at (0, 1.5) {};
+        \node[element] (x4b) at (0, 0) {};
+        \node[element] (x4c) at (0, -1.5) {};
+
+        % Các phần tử trong tập Y
+        \node[element] (y4a) at (4, 1.5) {};
+        \node[element] (y4b) at (4, 0) {};
+        \node[element] (y4c) at (4, -1.5) {};
+        
+        % Vẽ các mũi tên ánh xạ
+        \draw[arrow] (x4a) to (y4a);
+        \draw[arrow] (x4b) to (y4b);
+        \draw[arrow] (x4c) to (y4c); % Tương ứng 1-1
+        
+        % Chú thích cho hình
+        \node at (2, -2.8) {\textbf{Song ánh}};
+    \end{scope}
+
+    \end{tikzpicture}
+    \caption{Minh họa các loại ánh xạ khác nhau.}
+    \label{fig:mapping_types_grid}
+\end{figure}
+% --- Kết thúc môi trường hình ảnh ---

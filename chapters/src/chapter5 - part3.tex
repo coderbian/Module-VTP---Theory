@@ -1,0 +1,740 @@
+\section{Các phương pháp biến đổi và tính tích phân}
+
+\subsection{Phép đổi biến trong tích phân}
+\begin{theorem}
+    Giả sử $u = g(x)$ là một hàm khả vi liên tục trên một khoảng $I$ và hàm $f$ liên tục trên tập giá trị của $g$. Khi đó trên $I$, ta có:
+    \[ \int f(g(x))g'(x) \dd x = \int f(u) \dd u. \]
+\end{theorem}
+\begin{proof}
+    Vì $f$ liên tục trên $I$ nên nó có một nguyên hàm $F$, do đó $\int f(u) \dd u = F(u) + C$. Theo quy tắc đạo hàm hàm hợp, ta có:
+    \[
+        (F \circ g)'(x) = F'(g(x))g'(x) = f(g(x))g'(x).
+    \]
+    Điều này cho thấy $F \circ g$ là một nguyên hàm của hàm $x \mapsto f(g(x))g'(x)$. Do đó:
+    \[
+        \int f(g(x))g'(x) \dd x = F(g(x)) + D = F(u) + D = \int f(u) \dd u.
+    \]
+\end{proof}
+
+Sau đây là phiên bản của phương pháp thế cho tích phân xác định.
+\begin{theorem}[Công thức đổi biến]
+    Giả sử $u = g(x)$ là hàm khả vi liên tục trên $[a, b]$, và $f$ liên tục trên tập giá trị của $g$. Khi đó:
+    \begin{equation}
+        \int_a^b f(g(x))g'(x) \dd x = \int_{g(a)}^{g(b)} f(u) \dd u.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Gọi $F$ là một nguyên hàm bất kỳ của $f$. Khi đó, $F(g(x))$ là một nguyên hàm của $f(g(x))g'(x)$. Áp dụng Công thức Newton-Leibniz, ta có:
+    \[
+        \int_a^b f(g(x))g'(x) \dd x = F(g(x))\bigg|_a^b = F(g(b)) - F(g(a)) = \int_{g(a)}^{g(b)} f(u) \dd u.
+    \]
+\end{proof}
+
+\begin{example}
+    Tính $\int x \sin(x^2 + 3) \dd x$.
+\end{example}
+\begin{solution}
+    Ta thực hiện phép thế $u = x^2+3$, suy ra $\dd u = 2x \dd x$, hay $x \dd x = \frac{1}{2}\dd u$. Tích phân trở thành:
+    \[
+        \int x \sin(x^2 + 3) \dd x = \int \sin(u) \left(\frac{1}{2}\dd u\right) = \frac{1}{2}\int \sin u \dd u = -\frac{1}{2}\cos u + C.
+    \]
+    Thay $u$ trở lại theo $x$, ta được kết quả:
+    \[
+        \int x \sin(x^2 + 3) \dd x = -\frac{1}{2}\cos(x^2+3) + C.
+    \]
+\end{solution}
+
+\begin{example}
+    Tính $\int_0^1 \dfrac{x}{1+x^2} \dd x$.
+\end{example}
+\begin{solution}
+    Đặt $u = 1+x^2$, suy ra $\dd u = 2x \dd x$, hay $x\dd x = \frac{1}{2}\dd u$. Ta đổi cận tích phân: khi $x=0$ thì $u=1+0^2=1$, và khi $x=1$ thì $u=1+1^2=2$. Tích phân trở thành:
+    \[
+        \int_0^1 \dfrac{x}{1+x^2} \dd x = \int_1^2 \dfrac{1}{u} \left(\dfrac{1}{2}\dd u\right) = \dfrac{1}{2} \int_1^2 \dfrac{1}{u}\dd u = \dfrac{1}{2}\ln\abs{u}\bigg|_1^2 = \dfrac{1}{2}(\ln 2 - \ln 1) = \dfrac{1}{2}\ln 2.
+    \]
+\end{solution}
+
+Tóm lại, quy trình đổi biến có thể được thực hiện theo các bước sau:
+\begin{importantbox}
+    \textbf{Phương pháp đổi biến trong tích phân}
+    \begin{itemize}
+        \item \textbf{Bước 1:} Chọn một biểu thức phù hợp để đặt biến mới, thường là $u = g(x)$.
+        \item \textbf{Bước 2:} Tính vi phân $\dd u = g'(x) \dd x$.
+        \item \textbf{Bước 3:} Đối với tích phân xác định, đổi cận tích phân từ biến $x$ sang biến $u$.
+        \item \textbf{Bước 4:} Viết lại tích phân theo biến $u$ và giải. Nếu là tích phân bất định, hãy thay biến $u$ trở lại theo $x$ ở kết quả cuối cùng.
+    \end{itemize}
+
+\end{importantbox}
+
+\begin{proposition}[Tính đối xứng của tích phân]
+    Giả sử hàm $f$ liên tục trên đoạn $[-a, a]$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Nếu $f$ là hàm chẵn, tức là $f(-x) = f(x)$, thì $\int_{-a}^a f(x) \dd x = 2 \int_0^a f(x) \dd x$.
+        \item Nếu $f$ là hàm lẻ, tức là $f(-x) = -f(x)$, thì $\int_{-a}^a f(x) \dd x = 0$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Ta tách tích phân ban đầu thành hai phần:
+    \[
+        \int_{-a}^a f(x) \dd x = \int_{-a}^0 f(x) \dd x + \int_0^a f(x) \dd x.
+    \]
+    Trong tích phân thứ nhất, ta đổi biến $u = -x$. Khi đó $\dd u = -\dd x$. Cận tích phân đổi từ $x=-a \Rightarrow u=a$ và $x=0 \Rightarrow u=0$.
+    \[
+        \int_{-a}^0 f(x) \dd x = \int_{a}^{0} f(-u) (-\dd u) = \int_0^a f(-u) \dd u.
+    \]
+    Kết hợp lại, ta có:
+    \[
+        \int_{-a}^a f(x) \dd x = \int_0^a f(-u) \dd u + \int_0^a f(x) \dd x.
+    \]
+    Nếu $f$ là hàm chẵn, $f(-u) = f(u)$, và tích phân trở thành $2 \int_0^a f(x) \dd x$. Nếu $f$ là hàm lẻ, $f(-u) = -f(u)$, và tích phân trở thành $0$.
+\end{proof}
+
+\subsection{Tích phân từng phần}
+Từ quy tắc đạo hàm của tích hai hàm số $f$ và $g$:
+\[
+    \deriv{}{x}[f(x)g(x)] = f(x)g'(x) + g(x)f'(x).
+\]
+Lấy nguyên hàm hai vế, ta có:
+\[
+    f(x)g(x) = \int f(x)g'(x) \dd x + \int g(x)f'(x) \dd x.
+\]
+Sắp xếp lại, ta được công thức \textbf{tích phân từng phần} cho tích phân bất định:
+\begin{importantbox}
+    \[ \int f(x)g'(x) \dd x = f(x)g(x) - \int g(x)f'(x) \dd x. \]
+\end{importantbox}
+Đặt $u = f(x)$ và $v = g(x)$, ta có $\dd u = f'(x)\dd x$ và $\dd v = g'(x)\dd x$. Công thức trên có dạng rút gọn và dễ nhớ:
+\begin{importantbox}
+    \[ \int u \dd v = uv - \int v \dd u. \]
+\end{importantbox}
+Đối với tích phân xác định, công thức tương ứng là:
+\begin{importantbox}
+    \[ \int_a^b f(x)g'(x) \dd x = f(x)g(x)\bigg|_a^b - \int_a^b g(x)f'(x) \dd x. \]
+\end{importantbox}
+
+\begin{example}
+    Tính $\int x \cos x \dd x$.
+\end{example}
+\begin{solution}
+    Ta sử dụng phương pháp tích phân từng phần. Đặt:
+    \[
+        u = x \implies \dd u = \dd x
+    \]
+    \[
+        \dd v = \cos x \dd x \implies v = \sin x
+    \]
+    Áp dụng công thức, ta có:
+    \begin{align*}
+        \int x \cos x \dd x &= x \sin x - \int \sin x \dd x \\
+        &= x \sin x - (-\cos x) + C \\
+        &= x \sin x + \cos x + C.
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    Tính $\int x^2 \ln x \dd x$.
+\end{example}
+\begin{solution}
+    Đặt:
+    \[
+        u = \ln x \implies \dd u = \dfrac{1}{x} \dd x
+    \]
+    \[
+        \dd v = x^2 \dd x \implies v = \dfrac{x^3}{3}
+    \]
+    Áp dụng công thức tích phân từng phần:
+    \begin{align*}
+        \int x^2 \ln x \dd x &= \dfrac{x^3}{3} \ln x - \int \dfrac{x^3}{3} \cdot \dfrac{1}{x} \dd x \\
+        &= \dfrac{x^3}{3} \ln x - \int \dfrac{x^2}{3} \dd x \\
+        &= \dfrac{x^3}{3} \ln x - \dfrac{x^3}{9} + C.
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    Tính $\int_0^{\pi/2} e^x \sin x \dd x$.
+\end{example}
+\begin{solution}
+    Ta áp dụng tích phân từng phần hai lần. Đặt $I = \int_0^{\pi/2} e^x \sin x \dd x$. \\
+    Lần 1: Đặt $u = \sin x, \dd v = e^x \dd x$. Ta có $\dd u = \cos x \dd x, v = e^x$.
+    \[
+        I = e^x \sin x \bigg|_0^{\pi/2} - \int_0^{\pi/2} e^x \cos x \dd x = e^{\pi/2} - \int_0^{\pi/2} e^x \cos x \dd x.
+    \]
+    Lần 2: Tính $J = \int_0^{\pi/2} e^x \cos x \dd x$. Đặt $u' = \cos x, \dd v' = e^x \dd x$. Ta có $\dd u' = -\sin x \dd x, v' = e^x$.
+    \[
+        J = e^x \cos x \bigg|_0^{\pi/2} - \int_0^{\pi/2} e^x (-\sin x) \dd x = (0 - 1) + \int_0^{\pi/2} e^x \sin x \dd x = -1 + I.
+    \]
+    Thay $J$ vào biểu thức của $I$, ta có:
+    \[
+        I = e^{\pi/2} - (-1 + I) = e^{\pi/2} + 1 - I.
+    \]
+    Suy ra $2I = e^{\pi/2} + 1$, vậy $I = \dfrac{e^{\pi/2} + 1}{2}$.
+\end{solution}
+
+\subsection{Một số phương pháp tính tích phân đặc biệt}
+
+\subsubsection{Tích phân của hàm lượng giác}
+
+\begin{example}
+    Tính $\int \cos^3 x \dd x$.
+\end{example}
+\begin{solution}
+    Ta có thể tính tích phân này bằng cách tách $\cos x$ và sử dụng phép đổi biến $u = \sin x$.
+    \begin{align*}
+        \int \cos^3 x \dd x &= \int \cos^2 x \cos x \dd x \\
+        &= \int (1 - \sin^2 x) \cos x \dd x \\
+        &= \int (1 - u^2) \dd u \quad (\text{với } u = \sin x, \dd u = \cos x \dd x) \\
+        &= u - \dfrac{1}{3}u^3 + C \\
+        &= \sin x - \dfrac{1}{3}\sin^3 x + C.
+    \end{align*}
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.11) đã được thay đổi từ ∫sin⁵x cos²x dx thành ∫sin³x cos⁴x dx để tránh sao chép.
+%% Phương pháp giải cốt lõi (tách sin x và đổi biến u = cos x) được bảo toàn.
+\begin{example}
+    Tính $\int \sin^3 x \cos^4 x \dd x$.
+\end{example}
+\begin{solution}
+    Ta đổi biến $u = \cos x$, suy ra $\dd u = -\sin x \dd x$.
+    \begin{align*}
+        \int \sin^3 x \cos^4 x \dd x &= \int \sin^2 x \cos^4 x \sin x \dd x \\
+        &= \int (1 - \cos^2 x) \cos^4 x \sin x \dd x \\
+        &= \int (1 - u^2)u^4 (-\dd u) \\
+        &= -\int (u^4 - u^6) \dd u \\
+        &= -\left( \dfrac{u^5}{5} - \dfrac{u^7}{7} \right) + C \\
+        &= \dfrac{1}{7}\cos^7 x - \dfrac{1}{5}\cos^5 x + C.
+    \end{align*}
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.12) đã được thay đổi từ ∫sin⁴x dx thành ∫cos⁴x dx để tránh sao chép.
+%% Phương pháp giải cốt lõi (sử dụng công thức hạ bậc) được bảo toàn.
+\begin{example}
+    Tính $\int \cos^4 x \dd x$.
+\end{example}
+\begin{solution}
+    Ta sử dụng công thức hạ bậc $\cos^2 x = \dfrac{1 + \cos(2x)}{2}$.
+    \begin{align*}
+        \int \cos^4 x \dd x &= \int \left(\cos^2 x\right)^2 \dd x \\
+        &= \int \left( \dfrac{1 + \cos(2x)}{2} \right)^2 \dd x \\
+        &= \dfrac{1}{4} \int \left( 1 + 2\cos(2x) + \cos^2(2x) \right) \dd x \\
+        &= \dfrac{1}{4} \int \left( 1 + 2\cos(2x) + \dfrac{1 + \cos(4x)}{2} \right) \dd x \\
+        &= \dfrac{1}{4} \int \left( \dfrac{3}{2} + 2\cos(2x) + \dfrac{1}{2}\cos(4x) \right) \dd x \\
+        &= \dfrac{1}{4} \left( \dfrac{3}{2}x + \sin(2x) + \dfrac{1}{8}\sin(4x) \right) + C.
+    \end{align*}
+\end{solution}
+
+Các hệ thức lượng giác sau đây có thể hữu ích cho việc tính tích phân các tích của hàm sin và cos:
+\begin{align*}
+    \sin A \cos B &= \dfrac{1}{2}[\sin(A - B) + \sin(A + B)] \\
+    \sin A \sin B &= \dfrac{1}{2}[\cos(A - B) - \cos(A + B)] \\
+    \cos A \cos B &= \dfrac{1}{2}[\cos(A - B) + \cos(A + B)]
+\end{align*}
+
+\subsubsection{Các phép đổi biến lượng giác}
+Một số phép đổi biến lượng giác thường dùng, với hàm $\sec\theta = \dfrac{1}{\cos\theta}$:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Biểu thức} & \textbf{Phép đổi biến} & \textbf{Hệ thức} \\
+        \hline
+        $\sqrt{a^2 - x^2}$ & $x = a \sin\theta$ & $1 - \sin^2\theta = \cos^2\theta$ \\
+        \hline
+        $\sqrt{a^2 + x^2}$ & $x = a \tan\theta$ & $1 + \tan^2\theta = \sec^2\theta$ \\
+        \hline
+        $\sqrt{x^2 - a^2}$ & $x = a \sec\theta$ & $\sec^2\theta - 1 = \tan^2\theta$ \\
+        \hline
+        $x^2 + a^2$ & $x = a \tan\theta$ & $dx = a \sec^2\theta d\theta$ \\
+        \hline
+        $x^2 - a^2$ & $x = a \sec\theta$ & $dx = a \sec\theta \tan\theta d\theta$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+%% Ghi chú: Ví dụ gốc (5.3.13) đã được thay đổi từ ∫√(9 - x²) dx thành ∫√(16 - x²) dx để tránh sao chép.
+%% Phương pháp giải cốt lõi (đổi biến x = a sinθ) được bảo toàn.
+\begin{example}
+    Tính $\int \sqrt{16 - x^2} \dd x$.
+\end{example}
+\begin{solution}
+    Đặt $x = 4\sin\theta$, với $-\dfrac{\pi}{2} \le \theta \le \dfrac{\pi}{2}$. Khi đó $\dd x = 4\cos\theta \dd\theta$.
+    Do điều kiện của $\theta$, ta có $\cos\theta \ge 0$, nhờ đó $\sqrt{16 - 16\sin^2\theta} = \sqrt{16\cos^2\theta} = 4\cos\theta$.
+    \begin{align*}
+        \int \sqrt{16 - x^2} \dd x &= \int (4\cos\theta)(4\cos\theta) \dd\theta \\
+        &= 16 \int \cos^2\theta \dd\theta \\
+        &= 16 \int \dfrac{1 + \cos(2\theta)}{2} \dd\theta \\
+        &= 8 \left(\theta + \dfrac{1}{2}\sin(2\theta) \right) + C \\
+        &= 8\theta + 4\sin(2\theta) + C \\
+        &= 8\theta + 8\sin\theta\cos\theta + C.
+    \end{align*}
+    Từ $x = 4\sin\theta$, ta có $\theta = \arcsin\left(\dfrac{x}{4}\right)$ và $\cos\theta = \sqrt{1 - \sin^2\theta} = \sqrt{1 - \left(\dfrac{x}{4}\right)^2} = \dfrac{\sqrt{16 - x^2}}{4}$.
+    Thay vào kết quả trên, ta được:
+    \[
+        \int \sqrt{16 - x^2} \dd x = 8\arcsin\left(\dfrac{x}{4}\right) + 8\left(\dfrac{x}{4}\right)\dfrac{\sqrt{16 - x^2}}{4} + C = 8\arcsin\left(\dfrac{x}{4}\right) + \dfrac{x\sqrt{16-x^2}}{2} + C.
+    \]
+\end{solution}
+
+\subsubsection{Tích phân của hàm hữu tỉ}
+Ta minh họa phương pháp qua một số ví dụ sau.
+
+%% Ghi chú: Ví dụ gốc (5.3.14) đã được thay đổi từ ∫(x³+x)/(x-1) dx thành ∫(x³+2x)/(x-1) dx để tránh sao chép.
+\begin{example}
+    Tính $\int \dfrac{x^3+2x}{x-1} \dd x$.
+\end{example}
+\begin{solution}
+    Ta thực hiện phép chia đa thức:
+    \begin{align*}
+        \int \dfrac{x^3+2x}{x-1} \dd x &= \int \left(x^2 + x + 3 + \dfrac{3}{x-1}\right) \dd x \\
+        &= \dfrac{x^3}{3} + \dfrac{x^2}{2} + 3x + 3\ln\abs{x-1} + C.
+    \end{align*}
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.15) đã được thay đổi để tránh sao chép. Kỹ thuật phân tích thành phân thức đơn giản được giữ lại.
+\begin{example}
+    Tính $\int \dfrac{x+4}{x^2 - 5x + 6} \dd x$.
+\end{example}
+\begin{solution}
+    Ta có thể phân tích hàm dưới dấu tích phân thành tổng sau:
+    \[
+        \dfrac{x+4}{x^2 - 5x + 6} = \dfrac{x+4}{(x-2)(x-3)} = \dfrac{A}{x-2} + \dfrac{B}{x-3}.
+    \]
+    Giải đồng nhất thức ta được $A = -6$ và $B = 7$. Vì vậy:
+    \begin{align*}
+        \int \dfrac{x+4}{x^2 - 5x + 6} \dd x &= \int \left( \dfrac{-6}{x-2} + \dfrac{7}{x-3} \right) \dd x \\
+        &= -6\ln\abs{x-2} + 7\ln\abs{x-3} + C.
+    \end{align*}
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.16) đã được thay đổi để tránh sao chép. Kỹ thuật phân tích với mẫu chứa nhân tử bậc hai bất khả quy được giữ lại.
+\begin{example}
+    Tính $\int \dfrac{3x^2-x+6}{x^3+3x} \dd x$.
+\end{example}
+\begin{solution}
+    \begin{align*}
+        \int \dfrac{3x^2-x+6}{x(x^2+3)} \dd x &= \int \left( \dfrac{2}{x} + \dfrac{x-1}{x^2+3} \right) \dd x \\
+        &= \int \dfrac{2}{x} \dd x + \int \dfrac{x}{x^2+3} \dd x - \int \dfrac{1}{x^2+3} \dd x \\
+        &= 2\ln\abs{x} + \dfrac{1}{2}\ln(x^2+3) - \dfrac{1}{\sqrt{3}}\arctan\left(\dfrac{x}{\sqrt{3}}\right) + K.
+    \end{align*}
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.17) đã được thay đổi để tránh sao chép. Kỹ thuật chia đa thức và hoàn thành bình phương ở mẫu được giữ lại.
+\begin{example}
+    Tính $\int \dfrac{2x^2-x+4}{x^2-2x+5} \dd x$.
+\end{example}
+\begin{solution}
+    Ta chia đa thức và được:
+    \[
+        \dfrac{2x^2-x+4}{x^2-2x+5} = 2 + \dfrac{3x-6}{x^2-2x+5}.
+    \]
+    Chú ý rằng $x^2-2x+5 = (x-1)^2+4$. Ta đổi biến $u=x-1$, suy ra $\dd u = \dd x$ và $x=u+1$.
+    \begin{align*}
+        \int \dfrac{2x^2-x+4}{x^2-2x+5} \dd x &= \int \left( 2 + \dfrac{3x-6}{(x-1)^2+4} \right) \dd x \\
+        &= 2x + \int \dfrac{3(u+1)-6}{u^2+4} \dd u \\
+        &= 2x + \int \dfrac{3u-3}{u^2+4} \dd u \\
+        &= 2x + 3\int \dfrac{u}{u^2+4} \dd u - 3\int \dfrac{1}{u^2+4} \dd u \\
+        &= 2x + \dfrac{3}{2}\ln(u^2+4) - \dfrac{3}{2}\arctan\left(\dfrac{u}{2}\right) + C \\
+        &= 2x + \dfrac{3}{2}\ln(x^2-2x+5) - \dfrac{3}{2}\arctan\left(\dfrac{x-1}{2}\right) + C.
+    \end{align*}
+\end{solution}
+
+\subsection{Sự tồn tại công thức cho tích phân}
+
+Theo Định lý cơ bản của Vi tích phân, mọi hàm liên tục đều có nguyên hàm được cho bởi một tích phân. Do đó, câu hỏi về việc ``tính'' tích phân của một hàm thực chất là tìm một công thức tường minh cho nguyên hàm đó. ``Công thức tường minh'' ở đây có nghĩa chính xác là một biểu thức được tạo nên từ các hàm số sơ cấp.
+
+Tuy nhiên, sau này người ta đã chứng minh được rằng có những hàm liên tục mà nguyên hàm của chúng không phải là hàm sơ cấp. Do đó, không thể biểu diễn tích phân của chúng bằng một công thức tường minh.
+
+\begin{example}
+    Hàm số $f(x) = e^{x^2}$ là một hàm liên tục trên $\R$ và do đó có nguyên hàm. Tuy nhiên, người ta đã chứng minh được rằng nguyên hàm của nó không thể biểu diễn dưới dạng một hàm sơ cấp. Một số tích phân khác cũng được biết là không có nguyên hàm sơ cấp bao gồm:
+    \[ \int \dfrac{e^x}{x}\dd x, \quad \int \sin(x^2)\dd x, \quad \int \cos(e^x)\dd x, \quad \int \sqrt{x^3+1}\dd x, \quad \int \dfrac{1}{\ln x}\dd x, \quad \int \dfrac{\sin x}{x}\dd x. \]
+\end{example}
+
+Việc tìm công thức tường minh cho nguyên hàm nói chung vẫn là một bài toán khó, mặc dù đã được nghiên cứu từ rất lâu. Trong nhiều trường hợp, công thức không tồn tại hoặc quá phức tạp để sử dụng. Do đó, người ta thường dùng các phương pháp khác để khảo sát tích phân, chẳng hạn như phân tích thành chuỗi, tính toán xấp xỉ, hoặc biến đổi để khảo sát các tính chất mà không cần đến công thức tường minh.
+
+\subsubsection{Tính tích phân bằng phần mềm máy tính}
+
+Việc tính toán tích phân thường phức tạp và mỗi loại hàm đòi hỏi những phương pháp riêng. Các hệ Đại số Máy tính (Computer Algebra Systems - CAS) hiện đại thường được cài đặt các thuật toán rất mạnh để tìm nguyên hàm, trong đó có thuật toán Risch, cho phép xác định một hàm cho trước có nguyên hàm sơ cấp hay không và nếu có thì sẽ đưa ra công thức của nó.
+
+\begin{example}
+    Tính $\int \sqrt{\cot x} \dd x$.
+\end{example}
+\begin{solution}
+    Sử dụng phần mềm máy tính như WolframAlpha hoặc Maxima, ta có thể thu được một kết quả rất phức tạp, cho thấy việc tính toán bằng tay sẽ rất khó khăn:
+    \[
+        -\dfrac{1}{\sqrt{2}}\ln(\cos x - \sqrt{2\sin x \cos x} + \sin x) + \dfrac{1}{\sqrt{2}}\ln(\cos x + \sqrt{2\sin x \cos x} + \sin x) + C.
+    \]
+\end{solution}
+
+\subsection{Tính tích phân bằng phương pháp số}
+
+Trong nhiều trường hợp, việc tính chính xác giá trị tích phân là không thể hoặc không cần thiết. Hơn nữa, có những hàm số được cho dưới dạng bảng dữ liệu từ thực nghiệm và không có công thức tường minh. Khi đó, việc tính xấp xỉ tích phân là mối quan tâm chính.
+
+Phương pháp cơ bản là sử dụng một tổng Riemann với cách chia khoảng và chọn điểm đại diện thích hợp. Dưới đây ta xét phương pháp xấp xỉ dựa trên cách chia đều miền xác định. Cho hàm $f$ xác định trên $[a, b]$, ta chia đoạn này thành $n$ khoảng con bằng nhau, mỗi khoảng có chiều dài $\Delta x = \dfrac{b-a}{n}$. Đặt $x_i = a + i\Delta x$, $0 \le i \le n$.
+
+\begin{importantbox}
+    \textbf{Quy tắc điểm giữa (Midpoint Rule)} \\
+    Lấy tổng Riemann với điểm đại diện là trung điểm của mỗi khoảng con, ta có công thức xấp xỉ:
+    \[
+        \int_a^b f(x) \dd x \approx M_n = [f(x_1^*) + f(x_2^*) + \dots + f(x_n^*)]\Delta x
+    \]
+    với $x_i^* = \dfrac{1}{2}(x_{i-1} + x_i)$.
+\end{importantbox}
+
+\begin{example}
+    Sử dụng Quy tắc điểm giữa với $n = 4$ để xấp xỉ $\int_1^2 \dfrac{1}{x} \dd x$.
+\end{example}
+\begin{solution}
+    Đoạn $[1, 2]$ được chia thành 4 khoảng con, mỗi khoảng có chiều rộng $\Delta x = \dfrac{2-1}{4} = 0.25$.
+    Các điểm chia là $1, 1.25, 1.5, 1.75, 2$.
+    Các trung điểm tương ứng là $1.125, 1.375, 1.625, 1.875$.
+    Theo Quy tắc điểm giữa:
+    \begin{align*}
+        \int_1^2 \dfrac{1}{x} \dd x &\approx M_4 = 0.25 \left[ f(1.125) + f(1.375) + f(1.625) + f(1.875) \right] \\
+        &= 0.25 \left( \dfrac{1}{1.125} + \dfrac{1}{1.375} + \dfrac{1}{1.625} + \dfrac{1}{1.875} \right) \\
+        &\approx 0.25 (0.8888... + 0.7272... + 0.6153... + 0.5333...) \\
+        &\approx 0.6912.
+    \end{align*}
+    Giá trị chính xác của tích phân là $\ln(2) \approx 0.6931$.
+\end{solution}
+
+Ngoài ra, còn có những phương pháp xấp xỉ khác như \textbf{Quy tắc hình thang} (xấp xỉ bằng hình thang) hay \textbf{Quy tắc Simpson} (xấp xỉ bằng đường parabol). Các đề tài này thường được khảo sát sâu hơn trong môn Phương pháp tính hay Giải tích số.
+
+\subsection{Tích phân suy rộng}
+
+Có những câu hỏi đơn giản như diện tích bên dưới đồ thị của hàm $y = \dfrac{1}{x}$ trên khoảng $(1, \infty)$ bằng bao nhiêu? Để trả lời những câu hỏi như vậy ta xây dựng khái niệm \textbf{tích phân suy rộng}, ở đó cận tích phân có thể là $\pm\infty$ hoặc hàm số không bị chặn tại cận.
+
+\begin{definition}(Tích phân suy rộng) Với $a,b \in \R$
+    \begin{enumerate}[label=(\alph*)]
+        \item Nếu $\int_a^t f(x) \dd x$ tồn tại với mọi $t \ge a$, ta định nghĩa:
+        \[ \int_a^\infty f(x) \dd x = \lim_{t \to \infty} \int_a^t f(x) \dd x. \]
+        \item Nếu $\int_t^b f(x) \dd x$ tồn tại với mọi $t \le b$, ta định nghĩa:
+        \[ \int_{-\infty}^b f(x) \dd x = \lim_{t \to -\infty} \int_t^b f(x) \dd x. \]
+        \item Nếu $\int_{-\infty}^c f(x) \dd x$ và $\int_c^\infty f(x) \dd x$ cùng hội tụ với một số $c$ nào đó, ta định nghĩa:
+        \[ \int_{-\infty}^\infty f(x) \dd x = \int_{-\infty}^c f(x) \dd x + \int_c^\infty f(x) \dd x. \]
+        \item Nếu $f$ liên tục trên $(a, b]$ và gián đoạn tại $a$, ta định nghĩa:
+        \[ \int_a^b f(x) \dd x = \lim_{t \to a^+} \int_t^b f(x) \dd x. \]
+        \item Nếu $f$ liên tục trên $[a, b)$ và gián đoạn tại $b$, ta định nghĩa:
+        \[ \int_a^b f(x) \dd x = \lim_{t \to b^-} \int_a^t f(x) \dd x. \]
+    \end{enumerate}
+    Ta nói một tích phân suy rộng là \textbf{hội tụ} nếu giới hạn tương ứng tồn tại và là một số thực hữu hạn. Ngược lại, ta nói nó \textbf{phân kỳ}.
+\end{definition}
+
+\begin{example}
+    Xét sự hội tụ của tích phân $\int_1^\infty \dfrac{1}{x} \dd x$.
+\end{example}
+\begin{solution}
+    Theo định nghĩa, ta có:
+    \[
+        \int_1^\infty \dfrac{1}{x} \dd x = \lim_{t \to \infty} \int_1^t \dfrac{1}{x} \dd x = \lim_{t \to \infty} \ln\abs{x} \bigg|_1^t = \lim_{t \to \infty} (\ln t - \ln 1) = \lim_{t \to \infty} \ln t = \infty.
+    \]
+    Vì giới hạn không phải là một số thực hữu hạn, tích phân này phân kỳ.
+\end{solution}
+
+\begin{importantbox}
+    \textbf{Tích phân:}
+    \[
+        \int_1^\infty \dfrac{1}{x^p} \dd x
+    \]
+    Tích phân này hội tụ khi và chỉ khi $p > 1$.
+\end{importantbox}
+\begin{proof}
+    Trường hợp $p=1$ đã được xét ở trên. Giả sử $p \neq 1$.
+    \begin{align*}
+        \int_1^\infty \dfrac{1}{x^p} \dd x &= \lim_{t \to \infty} \int_1^t x^{-p} \dd x = \lim_{t \to \infty} \dfrac{x^{-p+1}}{-p+1} \bigg|_1^t \\
+        &= \lim_{t \to \infty} \dfrac{1}{1-p} \left( \dfrac{1}{t^{p-1}} - 1 \right).
+    \end{align*}
+    Nếu $p > 1$ thì $p-1 > 0$, do đó $\lim_{t \to \infty} \dfrac{1}{t^{p-1}} = 0$. Tích phân hội tụ và có giá trị $\dfrac{1}{p-1}$.
+    Nếu $p < 1$ thì $p-1 < 0$, do đó $\lim_{t \to \infty} t^{1-p} = \infty$. Tích phân phân kỳ.
+\end{proof}
+
+%% Ghi chú: Ví dụ gốc (5.3.24) đã được thay đổi để tránh sao chép.
+\begin{example}
+    Tính $\int_{-\infty}^0 x e^{2x} \dd x$.
+\end{example}
+\begin{solution}
+    Theo định nghĩa, ta tính:
+    \[
+        \int_{-\infty}^0 x e^{2x} \dd x = \lim_{t \to -\infty} \int_t^0 x e^{2x} \dd x.
+    \]
+    Sử dụng tích phân từng phần với $u=x, \dd v = e^{2x}\dd x$, ta có $\dd u = \dd x, v = \frac{1}{2}e^{2x}$.
+    \[
+        \int_t^0 x e^{2x} \dd x = \dfrac{1}{2}xe^{2x} \bigg|_t^0 - \int_t^0 \dfrac{1}{2}e^{2x} \dd x = -\dfrac{1}{2}te^{2t} - \dfrac{1}{4}e^{2x} \bigg|_t^0 = -\dfrac{1}{2}te^{2t} - \dfrac{1}{4}(1 - e^{2t}).
+    \]
+    Áp dụng quy tắc L'Hôpital: $\lim_{t \to -\infty} te^{2t} = \lim_{t \to -\infty} \dfrac{t}{e^{-2t}} = \lim_{t \to -\infty} \dfrac{1}{-2e^{-2t}} = 0$.
+    Vậy:
+    \[
+        \int_{-\infty}^0 x e^{2x} \dd x = \lim_{t \to -\infty} \left(-\dfrac{1}{2}te^{2t} - \dfrac{1}{4} + \dfrac{1}{4}e^{2t}\right) = 0 - \dfrac{1}{4} + 0 = -\dfrac{1}{4}.
+    \]
+\end{solution}
+
+%% Ghi chú: Ví dụ gốc (5.3.25) đã được thay đổi để tránh sao chép.
+\begin{example}
+    Tính $\int_3^7 \dfrac{1}{\sqrt{x-3}} \dd x$.
+\end{example}
+\begin{solution}
+    Tích phân này là suy rộng vì hàm số có tiệm cận đứng tại $x=3$.
+    \begin{align*}
+        \int_3^7 \dfrac{1}{\sqrt{x-3}} \dd x &= \lim_{t \to 3^+} \int_t^7 (x-3)^{-1/2} \dd x \\
+        &= \lim_{t \to 3^+} \left[ 2\sqrt{x-3} \right]_t^7 \\
+        &= \lim_{t \to 3^+} (2\sqrt{4} - 2\sqrt{t-3}) = 4.
+    \end{align*}
+\end{solution}
+
+Dưới đây là một ví dụ về phương pháp so sánh, một công cụ hiệu quả để xét tính hội tụ của tích phân suy rộng.
+
+\begin{example}
+    Xét sự hội tụ của tích phân $\int_1^\infty \dfrac{1}{x^3+1} \dd x$.
+\end{example}
+\begin{solution}
+    Ta không thể tính nguyên hàm của $\dfrac{1}{x^3+1}$ một cách dễ dàng. Tuy nhiên, ta có thể so sánh nó với một hàm đơn giản hơn.
+    Với $x \ge 1$, ta có $x^3+1 > x^3$, suy ra $0 < \dfrac{1}{x^3+1} < \dfrac{1}{x^3}$.
+    Vì $\int_1^\infty \dfrac{1}{x^3} \dd x$ là tích phân hội tụ ($p=3 > 1$), nên theo tiêu chuẩn so sánh cho tích phân suy rộng (tương tự như với chuỗi số), ta có thể kết luận rằng $\int_1^\infty \dfrac{1}{x^3+1} \dd x$ cũng hội tụ.
+\end{solution}
+
+\begin{example}
+    Chứng minh rằng $\int_0^\infty e^{-x^2} \dd x$ hội tụ.
+\end{example}
+\begin{solution}
+    Ta không thể tính tích phân này trực tiếp vì nguyên hàm của $e^{-x^2}$ không phải là một hàm sơ cấp. Ta tách tích phân:
+    \[
+        \int_0^\infty e^{-x^2} \dd x = \int_0^1 e^{-x^2} \dd x + \int_1^\infty e^{-x^2} \dd x.
+    \]
+    Tích phân thứ nhất là một tích phân Riemann thông thường có giá trị hữu hạn. Đối với tích phân thứ hai, ta thấy rằng với $x \ge 1$ thì $x^2 \ge x$, nên $-x^2 \le -x$, và do đó $e^{-x^2} \le e^{-x}$.
+    \[
+        \int_1^\infty e^{-x} \dd x = \lim_{t \to \infty} \int_1^t e^{-x} \dd x = \lim_{t \to \infty} (-e^{-x})\bigg|_1^t = \lim_{t \to \infty} (-e^{-t} + e^{-1}) = e^{-1}.
+    \]
+    Vì $\int_1^\infty e^{-x} \dd x$ hội tụ, nên $\int_1^\infty e^{-x^2} \dd x$ cũng hội tụ. Do đó, $\int_0^\infty e^{-x^2} \dd x$ hội tụ.
+    Tích phân này thường xuất hiện trong Xác suất và Thống kê.
+\end{solution}
+
+\subsection{Bài tập}
+
+\subsubsection{Tính tích phân}
+\begin{exercise}[Phép đổi biến]
+    Tính các tích phân sau bằng phương pháp đổi biến.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^a x\sqrt{a^2 - x^2} \dd x$ \quad ($a>0$)
+        \item $\int_1^2 x\sqrt{x-1} \dd x$
+        \item $\int_0^4 \dfrac{x}{\sqrt{1+2x}} \dd x$
+        \item $\int \dfrac{\sin(2x)}{1+\cos^2 x} \dd x$
+        \item $\int_1^2 \dfrac{\ln(2x)}{x} \dd x$
+        \item $\int \dfrac{e^{1/t}}{t^2} \dd t$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Tích phân từng phần]
+    Tính các tích phân sau bằng phương pháp tích phân từng phần.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int x \cos(4x) \dd x$
+        \item $\int t e^{-2t} \dd t$
+        \item $\int (x^2+3x)\cos x \dd x$
+        \item $\int t^3 \ln t \dd t$
+        \item $\int (\ln x)^2 \dd x$
+        \item $\int_4^9 \dfrac{\ln y}{\sqrt{y}} \dd y$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Tích phân hàm hữu tỉ]
+    Tính các tích phân của các hàm hữu tỉ sau.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int \dfrac{x^4}{x-1} \dd x$
+        \item $\int_0^1 \dfrac{2}{2x^2+3x+1} \dd x$
+        \item $\int \dfrac{1}{(x+a)(x+b)} \dd x$
+        \item $\int_0^1 \dfrac{x^3-4x-10}{x^2-x-6} \dd x$
+        \item $\int \dfrac{10}{(x-1)(x^2+9)} \dd x$
+        \item $\int \dfrac{x^3+x^2+2x+1}{(x^2+1)(x^2+2)} \dd x$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Phép đổi biến lượng giác]
+    Tính các tích phân sau bằng cách sử dụng phép đổi biến lượng giác.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^a x^3\sqrt{1-x^2} \dd x$
+        \item $\int \dfrac{\dd t}{t^2\sqrt{t^2-16}}$
+        \item $\int \dfrac{\dd x}{\sqrt{x^2+16}}$
+        \item $\int \sqrt{1-4x^2} \dd x$
+        \item $\int_0^1 \dfrac{\dd x}{(x^2+1)^2}$
+        \item $\int \dfrac{\sqrt{1+x^2}}{x} \dd x$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Chứng minh công thức]
+    Sử dụng phép đổi biến lượng giác $x = a\sinh t$ hoặc $x=a\tan\theta$ để chứng minh công thức:
+    \[ \int \dfrac{\dd x}{\sqrt{x^2+a^2}} = \ln(x + \sqrt{x^2+a^2}) + C. \]
+    (Gợi ý: $\cosh^2 t - \sinh^2 t = 1$ và $(\sinh t)' = \cosh t$)
+\end{exercise}
+
+\begin{exercise}
+    Việc tìm nguyên hàm của nhiều hàm số là một công việc rất phức tạp hoặc thậm chí bất khả thi bằng các phương pháp thông thường. Tuy nhiên, các Hệ thống Đại số Máy tính (Computer Algebra Systems - CAS) như Matlab, WolframAlpha, hay thư viện Sympy của Python có thể thực hiện công việc này một cách hiệu quả.
+
+    Sử dụng một phần mềm máy tính (xem Hướng dẫn ở trang ???), hãy thử tìm nguyên hàm (tích phân bất định) hoặc tính giá trị gần đúng của các tích phân sau. Hãy quan sát và ghi nhận những trường hợp máy tính có thể đưa ra công thức nguyên hàm sơ cấp và những trường hợp không thể.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int \dfrac{x^6 - 3x^4 + 2x^2 - 1}{x^4 - 5x^2 + 4} \dd x$ \quad (Một hàm hữu tỉ phức tạp)
+        
+        \item $\int \sqrt{1+x^4} \dd x$ \quad (Tích phân liên quan đến hàm elliptic)
+        
+        \item $\int \sin(\ln x) \dd x$
+        
+        \item $\int \cos(e^x) \dd x$
+        
+        \item $\int \dfrac{x}{\sqrt[3]{x^5 + 2x^3 - x - 5}} \dd x$
+        
+        \item \textbf{Tích phân lỗi (Error Function):} $\int e^{-x^2} \dd x$. Hãy dùng máy tính để tính giá trị của $\int_0^1 e^{-x^2} \dd x$.
+        
+        \item \textbf{Tích phân Sine (Sine Integral):} $\int \dfrac{\sin x}{x} \dd x$. Hãy dùng máy tính để tính giá trị của $\int_0^\pi \dfrac{\sin x}{x} \dd x$.
+        
+        \item \textbf{Tích phân Logarit (Logarithmic Integral):} $\int \dfrac{1}{\ln x} \dd x$.
+        
+        \item $\int_0^1 x^2 e^x \sin(x) \dd x$ \quad (Một tích phân có thể tính bằng tay nhưng rất dài dòng)
+    \end{enumerate}
+\end{exercise}
+
+\subsubsection{Tính tích phân bằng phương pháp số}
+
+\begin{exercise}
+    Cho hàm số $f(x) = x^3$ xác định trên đoạn $[0, 2]$. Hãy viết biểu thức tổng Riemann của $f$ trên $[0, 2]$ bằng cách chia đoạn này thành 8 đoạn con đều nhau, và lấy điểm mẫu là trung điểm của mỗi đoạn con. Hãy so sánh giá trị của tổng Riemann này với giá trị đúng của tích phân.
+\end{exercise}
+
+\begin{exercise}
+    Dùng Quy tắc điểm giữa với $n = 5$ để tính xấp xỉ tích phân $\int_1^3 e^{1/x^2} \dd x$.
+\end{exercise}
+
+\begin{exercise}
+    Dùng Quy tắc điểm giữa với $n = 8$ để ước lượng tích phân $\int_0^2 e^{-x^2} \dd x$.
+\end{exercise}
+
+\begin{exercise}
+    Dùng Quy tắc điểm giữa với $n = 5$ để ước lượng tích phân $\int_1^3 \ln x \dd x$.
+\end{exercise}
+
+\begin{exercise}
+    Dùng dữ liệu được cho trong bảng dưới đây và quy tắc điểm giữa để ước lượng giá trị của tích phân $\int_1^6 f(x) \dd x$.
+    \begin{center}
+        \begin{tabular}{|c|c||c|c|}
+            \hline
+            $x$ & $f(x)$ & $x$ & $f(x)$ \\
+            \hline
+            1.0 & 3.1 & 4.0 & 5.1 \\
+            1.5 & 3.5 & 4.5 & 4.8 \\
+            2.0 & 4.0 & 5.0 & 4.5 \\
+            2.5 & 4.4 & 5.5 & 4.2 \\
+            3.0 & 4.7 & 6.0 & 3.8 \\
+            3.5 & 5.0 & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{exercise}
+
+\subsubsection{Tích phân suy rộng}
+
+\begin{exercise}
+    Tính diện tích của miền bên dưới đường cong $y = \dfrac{3}{x^4}$ và bên trên trục $x$ trên khoảng $[2, \infty)$.
+\end{exercise}
+
+\begin{exercise}
+    Vẽ đồ thị của hàm $y = \dfrac{1}{4+x^2}$ và tính diện tích của miền được giới hạn bởi đồ thị này và trục $x$.
+\end{exercise}
+
+\begin{exercise}
+    Xác định các tích phân sau đây hội tụ hay phân kỳ. Nếu chúng hội tụ, hãy tính giá trị.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^1 \dfrac{\dd x}{x^3}$
+        \item $\int_1^5 \dfrac{\dd x}{\sqrt{5-x}}$
+        \item $\int_{-3}^{13} \dfrac{\dd x}{\sqrt[4]{x+3}}$
+        \item $\int_0^1 \dfrac{\dd x}{\sqrt{1-x^2}}$
+        \item $\int_0^9 \dfrac{\dd x}{\sqrt[3]{x-1}}$
+        \item $\int_2^3 \dfrac{w}{w-2} \dd w$
+        \item $\int_0^3 \dfrac{\dd x}{x^2-6x+5}$
+        \item $\int_2^3 \dfrac{\dd x}{\sqrt{3-x}}$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Tìm xem các tích phân sau là hội tụ hay phân kỳ. Nếu tích phân hội tụ hãy tính giá trị của nó.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_e^\infty \dfrac{\ln x}{x^2} \dd x$
+        \item $\int_1^\infty \dfrac{\ln x}{x^3} \dd x$
+        \item $\int_0^1 \dfrac{e^{-1/\sqrt{x}}}{x^{3/2}} \dd x$
+        \item $\int_0^1 \dfrac{1}{(x+1)\sqrt{x}} \dd x$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Xác định tích phân hội tụ hay phân kỳ bằng cách sử dụng phương pháp so sánh.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^\infty \dfrac{x}{x^3+1} \dd x$
+        \item $\int_0^\infty \dfrac{\cos^2 x}{x^2+1} \dd x$
+        \item $\int_1^\infty \dfrac{1}{x\sqrt{x^2+1}} \dd x$
+        \item $\int_1^\infty \dfrac{2+e^{-x}}{x} \dd x$
+        \item $\int_2^\infty \dfrac{x}{\sqrt{x^4-x}} \dd x$
+        \item $\int_0^\pi \dfrac{\sin^2 x}{\sqrt{x}} \dd x$
+        \item $\int_0^\infty xe^{-x^2/2} \dd x$
+        \item $\int_0^1 \dfrac{e^{-1/x}}{x^3} \dd x$
+        \item $\int_1^\infty \dfrac{1}{x^2e^x} \dd x$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Tìm các giá trị của $p$ sao cho tích phân hội tụ và tính tích phân với các giá trị đó của $p$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^1 \dfrac{1}{x^p} \dd x$
+        \item $\int_e^\infty \dfrac{1}{x(\ln x)^p} \dd x$
+        \item $\int_0^1 x^p \ln x \dd x$
+    \end{enumerate}
+\end{exercise}
+
+\subsubsection{Các bài toán khác}
+
+\begin{exercise}
+    Nếu $f$ là một hàm liên tục trên $\R$, hãy chứng minh rằng
+    \[ \int_a^b f(-x) \dd x = \int_{-b}^{-a} f(x) \dd x. \]
+    Hãy minh họa hình học cho đẳng thức này.
+\end{exercise}
+
+\begin{exercise}
+    Nếu $f$ là một hàm liên tục trên $\R$, hãy chứng minh rằng
+    \[ \int_a^b f(x+c) \dd x = \int_{a+c}^{b+c} f(x) \dd x. \]
+    Hãy minh họa hình học cho đẳng thức này.
+\end{exercise}
+
+\begin{exercise}
+    Chứng minh công thức truy hồi, với $n \ge 2$ là một số nguyên:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int \cos^n x \dd x = \dfrac{1}{n}\cos^{n-1}x \sin x + \dfrac{n-1}{n}\int \cos^{n-2}x \dd x.$
+        \item $\int \sin^n x \dd x = -\dfrac{1}{n}\cos x \sin^{n-1}x + \dfrac{n-1}{n}\int \sin^{n-2}x \dd x.$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Chứng minh rằng với $n \ge 2$ là một số nguyên:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_0^{\pi/2} \sin^n x \dd x = \dfrac{n-1}{n} \int_0^{\pi/2} \sin^{n-2} x \dd x.$
+        \item $\int_0^{\pi/2} \sin^{2n+1} x \dd x = \dfrac{2 \cdot 4 \cdot 6 \cdots (2n)}{3 \cdot 5 \cdot 7 \cdots (2n+1)}.$
+        \item $\int_0^{\pi/2} \sin^{2n} x \dd x = \dfrac{1 \cdot 3 \cdot 5 \cdots (2n-1)}{2 \cdot 4 \cdot 6 \cdots (2n)} \dfrac{\pi}{2}.$
+    \end{enumerate}
+\end{exercise}
+
+\subsubsection{Các bài toán nâng cao}
+\begin{exercise}
+    Chứng minh công thức, với $m$ và $n$ là các số nguyên dương:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_{-\pi}^{\pi} \sin(mx) \cos(nx) \dd x = 0.$
+        \item $\int_{-\pi}^{\pi} \sin(mx) \sin(nx) \dd x = \begin{cases} 0 & \text{nếu } m \neq n \\ \pi & \text{nếu } m = n \end{cases}.$
+        \item $\int_{-\pi}^{\pi} \cos(mx) \cos(nx) \dd x = \begin{cases} 0 & \text{nếu } m \neq n \\ \pi & \text{nếu } m = n \end{cases}.$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Một chuỗi Fourier hữu hạn được định nghĩa bởi
+    \[ f(x) = \sum_{n=1}^N a_n \sin(nx) = a_1 \sin x + a_2 \sin(2x) + \dots + a_N \sin(Nx). \]
+    Chứng minh rằng hệ số $a_m$ được cho bởi công thức
+    \[ a_m = \dfrac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(mx) \dd x. \]
+\end{exercise}
+
+\begin{exercise}
+    Cho $f$ là một hàm liên tục. Đặt
+    \[ g(x) = \int_0^x (x-t)f(t) \dd t. \]
+    Đây là một ví dụ của một đối tượng nâng cao hơn trong Giải tích toán học gọi là ``tích chập'' (convolution).
+    \begin{enumerate}[label=(\alph*)]
+        \item Tính $g$ nếu $f(x) = x^2$.
+        \item Chứng tỏ $g(x) = x\int_0^x f(t)\dd t - \int_0^x tf(t) \dd t.$
+        \item Tính $g'(x)$ và $g''(x)$.
+    \end{enumerate}
+\end{exercise}

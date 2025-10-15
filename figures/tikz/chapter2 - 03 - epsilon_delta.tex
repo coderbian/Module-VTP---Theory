@@ -1,0 +1,29 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        % Trục x
+        \draw[->] (-3,0) -- (3,0) node[right] {};
+        \node at (0,0) [below=3pt] {$a$};
+        \draw (0, -0.1) -- (0, 0.1);
+        \draw[red] (-1.5, 0.1) -- (-1.5, -0.1) node[below] {$a-\delta$};
+        \draw[red] (1.5, 0.1) -- (1.5, -0.1) node[below] {$a+\delta$};
+        \draw[red, dashed] (-1.5, 0) -- (1.5, 0);
+        \node at (-0.5, 0.3) [above] {$x$};
+        \filldraw[black] (-0.5,0) circle (1.5pt);
+
+        % Trục y
+        \draw[->] (5,0) -- (11,0) node[right] {};
+        \node at (8,0) [below=3pt] {$L$};
+        \draw (8, -0.1) -- (8, 0.1);
+        \draw[red] (6, 0.1) -- (6, -0.1) node[below] {$L-\epsilon$};
+        \draw[red] (10, 0.1) -- (10, -0.1) node[below] {$L+\epsilon$};
+        \draw[red, dashed] (6, 0) -- (10, 0);
+        \node at (8.8, 0.3) [above] {$f(x)$};
+        \filldraw[black] (8.8,0) circle (1.5pt);
+        
+        % Ánh xạ f
+        \draw[->, thick, blue!60] (-0.5, 0) .. controls (4, 2.5) and (7, 2.5) .. (8.8, 0) node[midway, above] {$f$};
+    \end{tikzpicture}
+    \caption{Minh họa định nghĩa $\epsilon-\delta$ của giới hạn.}
+    \label{fig:epsilon-delta}
+\end{figure}

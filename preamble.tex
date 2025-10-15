@@ -1,0 +1,235 @@
+% preamble.tex
+\documentclass[12pt, a4paper, twoside, openany]{book}
+% -----------------------------
+% Hỗ trợ tiếng Việt cho pdfLaTeX
+% -----------------------------
+\usepackage{fontspec} 
+\setmainfont{Times New Roman}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[vietnam]{babel}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17} % Cài đặt phiên bản tương thích cho pgfplots
+% \usepackage[svgnames]{xcolor} % Thêm nhiều màu sắc hơn
+\usepackage{lmodern}% to have a large font size for the chapter numbers
+\usepackage{lipsum}% just to generate text for the example
+\usepackage{enumitem}
+\usepackage{etoolbox} % Gói này cung cấp công cụ để tùy chỉnh các môi trường có sẵn
+\definecolor{myblue}{RGB}{0,0,255}
+\definecolor{chapnumberbg}{RGB}{26,40,105}
+\definecolor{chapname}{RGB}{100,117,158}
+
+\usepackage{background}
+
+\backgroundsetup{
+  scale=1,
+  angle=54.7,
+  opacity=0.1,                    % độ mờ watermark
+  position={current page.center},  % đặt gần giữa trang (thay đổi bằng vshift)
+  vshift=0pt,
+  contents={%
+    \makebox[\textwidth]{%
+      \hfill
+      % % logo (center vertically)
+      % \raisebox{-0.5\height}{\includegraphics[width=5cm]{figures/FirstByteLogoV2.png}}%
+      % \hspace{2.5em}%
+      % text (center vertically)
+      \raisebox{-0.5\height}{\sffamily\bfseries\fontsize{48}{30}\selectfont\color{black!40} FIRSTBYTE - Where Knowledge Begin}%
+      \hfill
+    }%
+  }
+}
+
+% -----------------------------
+% Gói toán học
+% -----------------------------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+% -----------------------------
+% Gói trình bày
+% -----------------------------
+\usepackage{geometry}
+\geometry{
+  top=2.5cm,
+  bottom=3cm,
+  left=2.5cm,
+  right=2.5cm
+}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyhdr}
+\usepackage{float}
+
+% Header / Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\setlength{\headheight}{14.49998pt}
+\fancyfoot[LE, RO]{\text{FIRSTBYTE - Where Knowledge Begins}} % Footer bên trái
+\fancyfoot[RE, LO]{\text{Trần Minh Hiếu Học}}
+\renewcommand{\footrulewidth}{0.4pt} % THÊM ĐƯỜNG KẺ FOOTER
+
+% --------- Đánh số section ---------
+\numberwithin{section}{chapter} % section = 1,2,... theo chương
+\numberwithin{subsection}{section}
+\numberwithin{subsubsection}{subsection}
+
+% -----------------------------
+% --------- Format tiêu đề section/subsection ---------
+\titleformat{\section}[hang]
+  {\normalfont\LARGE\bfseries\color{myblue}}
+  {\thesection}{1em}{#1}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\Large\bfseries\color{myblue}}
+  {\thesubsection}{1em}{#1}
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\large\bfseries\color{myblue}}
+  {\thesubsubsection}{1em}{#1}
+
+
+
+\titleformat{\chapter}[display]
+  {\normalfont}
+  {}
+  {0pt}
+  {%
+    \begin{tikzpicture}
+    \node[
+      draw=chapname,
+      rounded corners,
+      outer sep=0pt,
+      inner sep=6pt,
+      rotate=90,
+      line width=1pt,
+      font=\Large\color{chapnumberbg}\bfseries
+      ]
+      (chapname) 
+      {\chaptertitlename};
+    \node[
+      fill=chapnumberbg,
+      minimum width=2cm,
+      minimum height=2.3cm,
+      rounded corners,
+      anchor=west,
+      font=\color{white}\fontsize{40}{48}\selectfont\bfseries
+      ]
+      at ([xshift=6pt]chapname.south)
+      (chapnumber)
+      {\thechapter};
+    \node[
+      anchor=west,
+      text width=\textwidth-4cm,
+      font=\bfseries\LARGE
+      ] 
+      at ([xshift=10pt]chapnumber.east)
+      {#1};
+    \fill[
+      overlay,
+      draw=none,
+      line width=0pt,
+      rounded corners=1pt,
+      left color=chapnumberbg,
+      right color=chapnumberbg!10
+      ]
+      ([yshift=-3pt]chapname.north west) rectangle ++(\textwidth,-3pt);  
+    \end{tikzpicture}%
+  }
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont}
+  {}
+  {0pt}
+  {%
+    \begin{tikzpicture}
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      outer sep=0pt,
+      text width=\textwidth,
+      font=\bfseries\LARGE
+      ]
+      (chaptitle) 
+      {#1};
+    \fill[
+      overlay,
+      draw=none,
+      line width=0pt,
+      rounded corners=1pt,
+      left color=chapnumberbg,
+      right color=chapnumberbg!10
+      ]
+      ([yshift=-3pt]chaptitle.south west) rectangle ++(\textwidth,-3pt);  
+    \end{tikzpicture}%
+  }
+
+
+\renewcommand{\contentsname}{Mục lục}
+\renewcommand{\listfigurename}{Danh sách hình vẽ}
+\renewcommand{\listtablename}{Danh sách bảng biểu}
+\renewcommand{\chaptername}{Chương}
+\renewcommand{\bibname}{Tài liệu tham khảo}
+\renewcommand{\indexname}{Chỉ mục}
+\renewcommand{\figurename}{Hình}
+\newcommand{\version}{v1.0 - \today}
+
+% -----------------------------
+% Định nghĩa môi trường
+% -----------------------------
+\newtheorem{theorem}{Định lý}[chapter]
+\newtheorem{lemma}{Bổ đề}[chapter]
+\newtheorem{proposition}{Mệnh đề}[chapter]
+\newtheorem{corollary}{Hệ quả}[chapter]
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Định nghĩa}[chapter]
+\newtheorem{example}{Ví dụ}[chapter]
+\newtheorem{exercise}{Bài tập}[chapter]
+
+\renewcommand{\proofname}{Chứng minh}
+\newenvironment{solution}{\par\noindent\textit{Lời giải.} }{\qed}
+
+\newtcolorbox{importantbox}{
+  colback=yellow!10!white,
+  colframe=blue!75!black,
+  boxrule=0.5pt,
+  arc=2mm,
+  center
+}
+
+\newtcolorbox[auto counter, number within=chapter]{mynote}[1][]{
+  colback=blue!10!white,
+  colframe=black!75!blue,
+  boxrule=0.5pt,
+  arc=2mm,
+  fonttitle=\bfseries,
+  title={Ghi chú~\thetcbcounter}, % Tự động thêm tiêu đề "Ghi chú" và đánh số
+  #1
+}
+
+% Tự động bỏ thụt đầu dòng cho đoạn văn bản ngay sau các môi trường
+\makeatletter
+\AfterEndEnvironment{theorem}{\@afterindentfalse}
+\AfterEndEnvironment{lemma}{\@afterindentfalse}
+\AfterEndEnvironment{proposition}{\@afterindentfalse}
+\AfterEndEnvironment{corollary}{\@afterindentfalse}
+\AfterEndEnvironment{definition}{\@afterindentfalse}
+\AfterEndEnvironment{example}{\@afterindentfalse}
+\AfterEndEnvironment{exercise}{\@afterindentfalse}
+\AfterEndEnvironment{proof}{\@afterindentfalse}
+\AfterEndEnvironment{solution}{\@afterindentfalse}
+\makeatother
+
+% -----------------------------
+% Gọi file macros
+% -----------------------------
+\input{macros}

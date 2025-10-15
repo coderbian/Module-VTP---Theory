@@ -1,0 +1,59 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=middle,
+			xmin=-1, xmax=8,
+			ymin=-1, ymax=9,
+			xtick={2, 3.5, 5, 6.5},
+			xticklabels={$x_0$, $x_0+h_1$, $x_0+h_2$, $x_0+h_3$},
+			ytick={2, 3, 4.5, 6.5},
+			yticklabels={$f(x_0)$, $f(x_0+h_1)$, $f(x_0+h_2)$, $f(x_0+h_3)$},
+			xlabel={},
+			ylabel={},
+			width=12cm,
+			height=10cm,
+			]
+			% Define points
+			\coordinate (P) at (axis cs:2,2);
+			\coordinate (Q1) at (axis cs:3.5, 3);
+			\coordinate (Q2) at (axis cs:5, 4.5);
+			\coordinate (Q3) at (axis cs:6.5, 6.5);
+			
+			% % Draw secant lines
+			% \addplot[domain=0:7.5, color=red, thick, samples=2, name path=l1] table {2 2 \\ 6.5 8.0625};
+			% \addplot[domain=0:7.5, color=orange, thick, samples=2, name path=l2] table {2 2 \\ 5 5.5625};
+			% \addplot[domain=0:7.5, color=brown, thick, samples=2, name path=l3] table {2 2 \\ 3.5 3.5625};
+			
+			% Draw the main function curve
+			\addplot[domain=1:7, color=green!50!black, very thick, samples=100] {(1/9)*x^2 + (1/18)*x + 13/9} node[pos=0.9, right] {$f(x)$};
+			
+			% Draw points on the curve
+			\fill (P) circle (1.5pt);
+			\fill (Q1) circle (1.5pt);
+			\fill (Q2) circle (1.5pt);
+			\fill (Q3) circle (1.5pt);
+			
+			% Draw dashed lines for coordinates
+			\draw[dashed] (axis cs:0, 2) -- (P);
+			\draw[dashed] (axis cs:2, 0) -- (P);
+			
+			\draw[dashed] (axis cs:0, 3) -- (Q1);
+			\draw[dashed] (axis cs:3.5, 0) -- (Q1);
+			
+			\draw[dashed] (axis cs:0, 4.5) -- (Q2);
+			\draw[dashed] (axis cs:5, 0) -- (Q2);
+			
+			\draw[dashed] (axis cs:0, 6.5) -- (Q3);
+			\draw[dashed] (axis cs:6.5, 0) -- (Q3);
+			
+			% Add labels for lines
+			\node[above, color=red] at (axis cs:6, 8.5) {$l_1$};
+			\node[above, color=orange] at (axis cs:5.5, 8.5) {$l_2$};
+			\node[above, color=brown] at (axis cs:5, 8.5) {$l_3$};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Bài toán hệ số góc của tiếp tuyến.}
+	\label{fig:tangent-slope}
+\end{figure}

@@ -1,0 +1,49 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xtick={1.5},
+            xticklabels={$a$},
+            ytick={2.15},
+            yticklabels={$f(a)$},
+            xlabel={},
+            ylabel={},
+            xmin=-1, xmax=3,
+            ymin=-1, ymax=4,
+            width=8cm,
+            height=6cm,
+            clip=false,
+        ]
+        
+        % Đồ thị hàm số
+        \addplot[
+            domain=-0.8:2.8, 
+            samples=100, 
+            thick, 
+            green!50!black, 
+            smooth
+        ] {0.2*x^3 - 0.5*x^2 + 0.8*x + 1.4};
+        
+        % Nhãn y = f(x)
+        \node at (axis cs:2, 2) [anchor=south west] {$y=f(x)$};
+        
+        % Điểm (a, f(a))
+        \node[circle, fill, inner sep=1.5pt] at (axis cs:1.5, 2.15) {};
+        
+        % Đường dóng
+        \draw[dashed] (axis cs:1.5, 0) -- (axis cs:1.5, 2.15) -- (axis cs:0, 2.15);
+        
+        % Mũi tên chỉ sự tiến đến
+        \draw[->, red, thick] (axis cs:1.2, -0.2) -- (axis cs:1.4, -0.2);
+        \draw[->, red, thick] (axis cs:1.8, -0.2) -- (axis cs:1.6, -0.2);
+        \draw[->, red, thick] (axis cs:-0.1, 2.65) -- (axis cs: -0.1, 2.25);
+        \draw[->, red, thick] (axis cs:-0.1, 1.65) -- (axis cs: -0.1, 2.05);
+        
+        % \draw[<->, red, thick] (axis cs:1.5, 1.7) -- (axis cs:1.5, 2.3);
+        
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\centering Nếu $f$ liên tục tại $a$, khi $x \to a$ thì điểm $(x, f(x))$ trên đồ thị sẽ tiến về điểm $(a, f(a))$.}
+    \label{fig:continuous_func}
+\end{figure}

@@ -1,0 +1,32 @@
+\input{preamble}
+
+% \title{math-template}
+% \author{FirstByte }
+% \date{August 2025}
+
+\begin{document}
+\input{title}
+
+\frontmatter
+\tableofcontents
+\mainmatter
+% Nội dung chính
+
+\addtocounter{chapter}{0} % tăng bộ đếm lên 1
+
+% Input các chapters vào
+\input{chapters/00a - acknowledgements}
+\input{chapters/00b - introduction}
+\input{chapters/01 - chapter1}
+\input{chapters/02 - chapter2}
+\input{chapters/03 - chapter3}
+\input{chapters/04 - chapter4}
+\input{chapters/05 - chapter5}
+
+\backmatter
+% Phần cuối sách
+% Tài liệu tham khảo
+\input{reference}
+% Phụ lục
+
+\end{document}

@@ -1,0 +1,55 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xtick=\empty,
+            ytick=\empty,
+            xlabel={},
+            ylabel={},
+            xmin=-1, xmax=5,
+            ymin=0, ymax=4,
+            width=10cm,
+            height=8cm,
+        ]
+        
+        % Đồ thị hàm số y = f(x) (màu xanh lá)
+        \addplot[
+            domain=-1:1.7, 
+            samples=100, 
+            blue!60!black, 
+            smooth
+        ] {0.5/((x - 2)^2) + 0.5};
+        \addplot[
+            domain=2.3:5, 
+            samples=100, 
+            blue!60!black, 
+            smooth
+        ] {0.5/((x - 2)^2) + 0.5};
+        
+        % Đường ngang y = M (màu đỏ)
+        \addplot[
+            domain=-3:5,
+            violet,
+            const plot
+        ] {2} node[above, pos=0.9] {$y=M$};
+
+        \node(violet) at (axis cs: -0.4, 2.2) {$M$};
+
+        % \node at (axis cs:2, 3) {$y = M$};
+        
+        % Các đường thẳng đứng
+        % Đường x = a (màu đỏ)
+        \draw[red] (axis cs:2, 0) -- (axis cs:2, 4);
+        
+        % Đường x = a - delta (màu cam)
+        \draw[orange] (axis cs:1.422, 0) -- (axis cs:1.422, 2);
+        
+        % Đường x = a + delta (màu cam)
+        \draw[orange] (axis cs:2.577, 0) -- (axis cs:2.577, 2);
+        
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Minh họa $\abs{x-a} < \delta \implies f(x) > M$.}
+    \label{fig:limit_M_delta}
+\end{figure}

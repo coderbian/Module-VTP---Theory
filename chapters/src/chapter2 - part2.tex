@@ -1,0 +1,365 @@
+\section{Hàm số liên tục}
+\label{sec:ham-so-lien-tuc}
+
+Khái niệm về sự \textit{liên tục} rất phổ biến trong đời sống hàng ngày. Một quá trình được xem là liên tục nếu một sự thay đổi nhỏ ở đầu vào chỉ gây ra một sự thay đổi nhỏ tương ứng ở đầu ra. Nhiều hiện tượng tự nhiên được chúng ta hình dung là có tính liên tục, chẳng hạn như sự chuyển động của một vật thể trong không gian, sự thay đổi chiều cao của một người theo thời gian, hay sự biến thiên nhiệt độ trong một ngày.
+
+\begin{definition}[Hàm số liên tục]
+    \label{def:continous-function}
+    Một hàm số $f$ xác định trên tập $D$ được gọi là \textbf{liên tục tại điểm $a \in D$} nếu $\limit{x}{a} f(x) = f(a)$. Hiểu hôm na thì khi $x$ đủ gần $a$, $f(x)$ sẽ gần $(a)$, bằng ký hiệu ta viết:
+    \[\forall \epsilon > 0, \exists \delta > 0, \forall x \in D, \abs{x - a} < \delta \Longrightarrow \abs{f(x) - f(a)} < \epsilon\]
+    
+    Hàm số $f$ được gọi là \textbf{liên tục trên tập $D$} nếu nó liên tục tại mọi điểm thuộc $D$. Nếu $f$ không liên tục tại $a$, ta nói $f$ \textbf{gián đoạn} tại $a$.
+\end{definition}
+
+% Đây là đoạn văn bản diễn giải ý nghĩa của tính liên tục.
+% Bạn có thể đặt nó sau phần định nghĩa chính thức.
+
+Trong nhiều trường hợp phổ biến, khái niệm liên tục có thể được diễn tả một cách đơn giản hơn là: khi $x$ gần tới $a$ thì $f(x)$ gần tới $f(a)$. Nói cách khác, khi \textbf{biến thiên} $\Delta x = x - a$ của biến số $x$ nhỏ đi, thì \textbf{biến thiên} tương ứng $\Delta y = f(x) - f(a)$ của giá trị hàm số cũng phải nhỏ đi theo.
+
+Một cách nôm na, liên tục có nghĩa là một thay đổi ``nhỏ'' của giá trị biến độc lập chỉ dẫn tới một thay đổi ``nhỏ'' của giá trị biến phụ thuộc. Đây là một tính chất rất tiện lợi trong các ứng dụng, khiến cho hàm liên tục được sử dụng rộng rãi.
+
+Tuy nhiên, để diễn đạt một cách chính xác và tổng quát hơn, ý nghĩa của tính liên tục là: ta có thể làm cho sự thay đổi giá trị của hàm ($\Delta y$) \textbf{nhỏ một cách tùy ý}, miễn là ta làm cho sự thay đổi giá trị của biến ($\Delta x$) \textbf{đủ nhỏ}. Tính liên tục cho phép chúng ta kiểm soát được sai số: ta có thể đảm bảo sai số của đầu ra nhỏ hơn một ngưỡng bất kỳ bằng cách giữ cho sai số của đầu vào đủ nhỏ. Phần lớn các hàm số chúng ta xét trong môn học này đều là các hàm liên tục.
+
+Về mặt định lượng, hệ quả trực tiếp của tính liên tục tại một điểm là giới hạn của hàm tại điểm đó có thể được tính một cách đơn giản bằng cách thế số vào. Về mặt hình học, ta có thể hình dung tính liên tục tại một điểm có nghĩa là đồ thị của hàm số \textbf{không có lỗ thủng} hay ``đứt gãy'' tại điểm đó. Xem hình \ref{fig:continuous_func}
+
+Định nghĩa trên bao hàm ba điều kiện cần phải được thỏa mãn để một hàm số $f$ liên tục tại điểm $a$:
+\begin{enumerate}
+    \item $f(a)$ phải được xác định (tức là $a$ phải thuộc miền xác định của $f$).
+    \item Giới hạn $\limit{x}{a} f(x)$ phải tồn tại.
+    \item Giá trị của giới hạn phải bằng giá trị của hàm số tại điểm đó: $\limit{x}{a} f(x) = f(a)$.
+\end{enumerate}
+
+Về mặt trực quan, một hàm số liên tục trên một khoảng có đồ thị là một đường ``liền nét'', không có bất kỳ ``lỗ hổng'' hay ``bước nhảy'' nào. Ta có thể vẽ đồ thị của nó mà không cần nhấc bút lên khỏi mặt giấy, xem hình~\ref{fig:continuous_func}.
+
+\input{figures/tikz/chapter2 - 07 - continuous_function}
+
+Một hàm số sẽ bị gián đoạn tại điểm $a$ nếu nó vi phạm bất kỳ điều kiện nào trong ba điều kiện nêu trên, xem hình \ref{fig:discontinous_func}
+
+\input{figures/tikz/chapter2 - 08 - discontinous_function}
+
+\begin{example}
+    Dựa vào đồ thị trong Hình \ref{fig:discontinous_func}, hãy chỉ ra các điểm mà tại đó hàm số $f$ bị gián đoạn và giải thích lý do.
+\end{example}
+\begin{solution}
+    Hàm số $f$ bị gián đoạn tại các điểm sau:
+    \begin{itemize}
+        \item \textbf{Tại $x=1$:} Hàm số gián đoạn vì $f(1)$ không được xác định (trên đồ thị có một ``lỗ hổng''). Điều này vi phạm điều kiện (1).
+        \item \textbf{Tại $x=3$:} Hàm số gián đoạn vì giới hạn hai phía khác nhau. $\limit{x}{3^{-}} f(x) \neq \limit{x}{3^{+}} f(x)$, do đó $\limit{x}{3} f(x)$ không tồn tại. Đây là một điểm \textit{gián đoạn nhảy} và vi phạm điều kiện (2).
+        \item \textbf{Tại $x=5$:} Hàm số gián đoạn vì mặc dù $f(5)$ được xác định (điểm được tô đậm) và $\limit{x}{5} f(x)$ tồn tại (vị trí của lỗ hổng), nhưng hai giá trị này không bằng nhau: $\limit{x}{5} f(x) \neq f(5)$. Điều này vi phạm điều kiện (3).
+    \end{itemize}
+    Vậy trong cả $3$ vị trí, hàm số đều bị gián đoạn tại những điểm đó.
+\end{solution}
+
+\subsection{Tính chất của hàm số liên tục}
+\label{subsec:properties_of_continuous_functions}
+
+Sau đây là một loạt các định lý quan trọng cho hàm số liên tục. Kết quả này tới ngay từ kết quả tương ứng về giới hạn ở Định lý \ref{thm:limit-laws}.
+
+\begin{theorem}[Tính chất đại số của hàm liên tục]
+	\label{thm:properties_of_continuous_functions}
+	Nếu \( f \) và \( g \) là hai hàm số liên tục tại \( a \) thì các hàm số sau cũng liên tục tại \( a \):
+	\begin{enumerate}[label=(\alph*)]
+		\item \( f+g \)
+		\item \( f-g \)
+		\item \( f \cdot g \)
+		\item \( \dfrac{f}{g} \) (với \( g(a) \ne 0 \))
+	\end{enumerate}
+\end{theorem}
+
+Từ kết quả tương ứng của giới hạn, ta có thể dễ dàng suy ra rằng các hàm đa thức và hàm phân thức (thương của hai đa thức) đều liên tục trên tập xác định của chúng.
+
+\begin{theorem}[Tính liên tục của hàm hợp]
+	\label{thm:composition_of_continuous_functions}
+	Nếu hàm số \( g \) liên tục tại \( a \) và hàm số \( f \) liên tục tại \( g(a) \) thì hàm hợp \( f \circ g \) cũng liên tục tại \( a \).
+\end{theorem}
+
+\begin{proof}
+	Cho trước một số \( \epsilon > 0 \). Vì \( f \) liên tục tại \( g(a) \), nên tồn tại một số \( \delta_1 > 0 \) sao cho nếu \( |y - g(a)| < \delta_1 \) thì \( |f(y) - f(g(a))| < \epsilon \).
+	
+	Tiếp theo, vì \( g \) liên tục tại \( a \), nên với \( \delta_1 > 0 \) vừa tìm được, sẽ tồn tại một số \( \delta_2 > 0 \) sao cho nếu \( |x - a| < \delta_2 \) thì \( |g(x) - g(a)| < \delta_1 \).
+	
+	Kết hợp lại, nếu \( |x-a| < \delta_2 \) thì \( |g(x) - g(a)| < \delta_1 \), điều này dẫn tới \( |f(g(x)) - f(g(a))| < \epsilon \). Theo định nghĩa, điều này khẳng định rằng hàm hợp \( f \circ g \) liên tục tại \( a \).
+\end{proof}
+
+Một trong những kết quả quan trọng và được sử dụng thường xuyên nhất về tính liên tục trong học phần này là khẳng định rằng các hàm số sơ cấp đều liên tục.
+
+\begin{theorem}[Tính liên tục của hàm sơ cấp]
+	\label{thm:continuity_of_elementary_functions}
+	Các hàm số sơ cấp đều liên tục trên tập xác định của chúng.
+\end{theorem}
+
+Nhắc lại phần thảo luận ở Mục \ref{subsec:elementary-function}, ngoài một số trường hợp riêng như với hàm đa thức hay phân thức, chúng ta chưa nghiên cứu đủ sâu về các hàm sơ cấp để có thể chứng minh kết quả này. Do đó, trong khuôn khổ giáo trình này, chúng ta sẽ chấp nhận định lý này. Người đọc có thể tham khảo chứng minh chi tiết hơn trong các tài liệu chuyên sâu như [TPTT02, tr. 64].
+% TODO: sửa lại mục 1.2.2 cho đúng 
+
+\begin{example}
+	Các hàm số \( h(x) = \ln(x^2 + 4) \) và \( k(x) = \dfrac{\sin(x)}{\sqrt{x^4 + 1} - 1} \) là các hàm sơ cấp, do đó chúng liên tục trên toàn bộ tập xác định của chúng.
+\end{example}
+
+\begin{example}
+	Hàm số \( f(x) = \sqrt{4 - x^2} \) liên tục trên miền xác định của nó là đoạn \( [-2, 2] \).
+\end{example}
+
+Tính liên tục của các hàm sơ cấp thường được ứng dụng để tính giới hạn của chúng tại một điểm nằm trong miền xác định bằng cách thay giá trị của biến số vào biểu thức hàm một cách trực tiếp.
+
+\begin{example}
+	Tìm giới hạn \( \limit{x}{\frac{\pi}{2}} \dfrac{x^2 + \cos(x)}{2025 - \sin(x)} \).
+	\begin{solution}
+		Vì hàm số \( f(x) = \dfrac{x^2 + \cos(x)}{2025 - \sin(x)} \) là một hàm sơ cấp và điểm \( x = \dfrac{\pi}{2} \) thuộc tập xác định của nó, nên hàm số liên tục tại điểm này. Do đó, ta có thể tính giới hạn bằng cách thay số trực tiếp:
+		\[
+		\limit{x}{\frac{\pi}{2}} \dfrac{x^2 + \cos(x)}{2025 - \sin(x)} = \dfrac{\left(\dfrac{\pi}{2}\right)^2 + \cos\left(\dfrac{\pi}{2}\right)}{2025 - \sin\left(\dfrac{\pi}{2}\right)} = \dfrac{\dfrac{\pi^2}{4} + 0}{2025 - 1} = \dfrac{\pi^2}{8096}.
+		\]
+	\end{solution}
+\end{example}
+
+\begin{example}
+	Cho hàm số \( f(x) \) được định nghĩa bởi:
+	\[
+		f(x) = \begin{cases}
+			x^2 + 2x & \text{nếu } x \le 0 \\
+			x^3 - 4x & \text{nếu } 0 < x < 2 \\
+			3x - 6   & \text{nếu } x \ge 2
+		\end{cases}
+	\]
+	Tìm các điểm gián đoạn của hàm số. Tại những điểm đó, hàm số liên tục trái, liên tục phải, hay không liên tục bên nào?
+	\begin{solution}
+		Đây là dạng bài toán quen thuộc về tính liên tục của hàm số được cho bởi nhiều biểu thức.
+		
+		\begin{itemize}
+			\item Trên các khoảng mở \( (-\infty, 0) \), \( (0, 2) \) và \( (2, \infty) \), hàm số \( f(x) \) lần lượt trùng với các hàm đa thức \( y = x^2 + 2x \), \( y = x^3 - 4x \) và \( y = 3x - 6 \). Vì các hàm đa thức là hàm sơ cấp nên chúng liên tục trên toàn bộ \( \R \). Do đó, \( f(x) \) liên tục trên các khoảng mở này.
+			
+			\item Tại điểm nối \( x_0 = 0 \), ta cần xét các giới hạn một phía:
+			      \begin{align*}
+				      \limit{x}{0^-} f(x) &= \limit{x}{0^-} (x^2 + 2x) = 0^2 + 2(0) = 0. \\
+				      \limit{x}{0^+} f(x) &= \limit{x}{0^+} (x^3 - 4x) = 0^3 - 4(0) = 0.
+			      \end{align*}
+			      Ta cũng có giá trị của hàm tại \( x=0 \) là \( f(0) = 0^2 + 2(0) = 0 \).
+			      
+			      Vì \( \limit{x}{0^-} f(x) = \limit{x}{0^+} f(x) = f(0) = 0 \), nên hàm số \textbf{liên tục} tại \( x=0 \).
+			
+			\item Tại điểm nối \( x_0 = 2 \), ta xét tương tự:
+			      \begin{align*}
+				      \limit{x}{2^-} f(x) &= \limit{x}{2^-} (x^3 - 4x) = 2^3 - 4(2) = 8 - 8 = 0. \\
+				      \limit{x}{2^+} f(x) &= \limit{x}{2^+} (3x - 6) = 3(2) - 6 = 0.
+			      \end{align*}
+			      Giá trị của hàm tại \( x=2 \) là \( f(2) = 3(2) - 6 = 0 \).
+			      
+			      Vì \( \limit{x}{2^-} f(x) = \limit{x}{2^+} f(x) = f(2) = 0 \), nên hàm số \textbf{liên tục} tại \( x=2 \).
+		\end{itemize}
+		
+		\textbf{Kết luận:} Hàm số \( f(x) \) không có điểm gián đoạn nào. Nó liên tục trên toàn bộ tập số thực \( \R \).
+	\end{solution}
+\end{example}
+
+Dưới đây là một giới hạn đặc biệt, thường được sử dụng:
+\begin{proposition}
+	\label{prop:limit_sin_x_over_x}
+	Ta có
+	\begin{equation} \label{eq:limit_sin_x_over_x}
+		\limit{x}{0} \dfrac{\sin x}{x} = 1.
+	\end{equation}
+\end{proposition}
+\begin{proof}
+    Trong các tính chất của hàm lượng giác mà ta thừa nhận ở Mục \ref{subsec:elementary-function}, ta có bất đẳng thức \( \sin x < x < \tan x \) đúng với mọi \( x \in (0, \pi/2) \). Từ đó suy ra:
+	\[
+		\cos x < \dfrac{\sin x}{x} < 1.
+	\]
+	Vì hàm \( \cos x \) là hàm liên tục nên \( \limit{x}{0^+} \cos x = \cos(0) = 1 \). Áp dụng Định lý kẹp, ta được
+	\[
+		\limit{x}{0^+} \dfrac{\sin x}{x} = 1.
+	\]
+	Với \( x < 0 \), đặt \( x = -t \) với \( t > 0 \). Khi \( x \to 0^- \), ta có \( t \to 0^+ \). Do đó,
+	\[
+		\limit{x}{0^-} \dfrac{\sin x}{x} = \limit{t}{0^+} \dfrac{\sin(-t)}{-t} = \limit{t}{0^+} \dfrac{-\sin t}{-t} = \limit{t}{0^+} \dfrac{\sin t}{t} = 1.
+	\]
+	Vì giới hạn trái và giới hạn phải đều tồn tại và bằng 1, ta kết luận công thức \eqref{eq:limit_sin_x_over_x} là đúng.
+\end{proof}
+
+Liên quan tới đặc trưng của giới hạn hàm số thông qua giới hạn của dãy số ở Mệnh đề~\ref{prop:sequential-characterization-limit}, ta có thể đưa ra một đặc trưng tương đương cho sự liên tục của hàm số thông qua dãy số như sau.
+
+\begin{proposition}[Đặc trưng dãy của tính liên tục]
+	\label{prop:sequential_characterization_of_continuity}
+	Hàm số \( f \) liên tục tại \( a \) khi và chỉ khi với mọi dãy số \( (x_n)_{n \ge 1} \) hội tụ về \( a \) thì dãy giá trị tương ứng \( (f(x_n))_{n \ge 1} \) hội tụ về \( f(a) \). Nói cách khác, với mọi dãy \( (x_n)_{n \ge 1} \), ta có:
+	\[
+		\limit{n}{\infty} x_n = a \implies \limit{n}{\infty} f(x_n) = f(a).
+	\]
+\end{proposition}
+
+\begin{proof}
+    Chứng minh của mệnh đề này thường được trình bày chi tiết trong các giáo trình giải tích dành cho sinh viên ngành toán, ví dụ như [TPTT02]. Đáng chú ý, sách giáo khoa Giải tích lớp 11 [SGKTH] đã sử dụng mệnh đề này làm định nghĩa chính thức cho sự liên tục của hàm số.
+\end{proof}
+
+\subsection{Định lý giá trị trung gian}
+\label{subsec:intermediate_value_theorem}
+
+Trong đời sống ta thường nghĩ một chuyển động như của con người là liên tục theo thời gian. Chẳng hạn mọi người hẳn thấy hiển nhiên là đi từ trong nhà ra đường thì phải bước qua cửa. Cơ sở toán học của điều này chính là Định lý giá trị trung gian.
+
+\begin{theorem}[Định lý giá trị trung gian]
+	\label{thm:intermediate_value_theorem}
+	Giả sử \( f \) liên tục trên khoảng đóng \( [a, b] \) và \( N \) là một số bất kỳ nằm giữa \( f(a) \) và \( f(b) \). Khi đó tồn tại một số \( c \in [a, b] \) sao cho \( f(c) = N \).
+\end{theorem}
+
+Một cách ngắn gọn, một hàm số liên tục trên một đoạn lấy mọi giá trị trung gian. Tập giá trị của một hàm liên tục trên một đoạn số thực là một đoạn số thực. Tính chất này là một hệ quả của tính đầy đủ của tập hợp các số thực.
+
+Về mặt trực quan, Định lý giá trị trung gian có ý nghĩa rằng đồ thị của một hàm liên tục trên một khoảng là \textbf{liên thông}. Điều này thể hiện rằng đồ thị không có lỗ trống hay nét đứt nào, tức là liền mạch. Ta có thể tưởng tượng rằng ta có thể vẽ đoạn đồ thị này bằng một nét bút liền mạch mà không cần nhấc bút khỏi trang giấy. Ta cũng có thể tưởng tượng nếu đồ thị này là một con đường thì ta có thể đi từ đầu này tới đầu kia của một con đường này mà không gặp một trở ngại nào. Đồ thị đó chẳng qua là một đoạn số thực bị uốn cong.
+
+\input{figures/tikz/chapter2 - 09 - intermediate_value_theorem}
+
+\begin{example}
+    Chứng tỏ rằng phương trình
+    \[ 4x^3 - 6x^2 + 3x - 2 = 0 \]
+    có ít nhất một nghiệm thực nằm trong khoảng \( (1, 2) \).
+    \begin{solution}
+        Đặt \( f(x) = 4x^3 - 6x^2 + 3x - 2 \). Ta cần tìm một số \( c \in (1, 2) \) sao cho \( f(c) = 0 \).
+        
+        Hàm số \( f(x) \) là một hàm đa thức, do đó nó liên tục trên toàn bộ tập số thực \( \R \), và dĩ nhiên là liên tục trên đoạn \( [1, 2] \).
+        
+        Ta tính giá trị của hàm số tại hai đầu mút của đoạn:
+        \begin{align*}
+            f(1) &= 4(1)^3 - 6(1)^2 + 3(1) - 2 = 4 - 6 + 3 - 2 = -1 \\
+            f(2) &= 4(2)^3 - 6(2)^2 + 3(2) - 2 = 32 - 24 + 6 - 2 = 12
+        \end{align*}
+        
+        Ta thấy rằng \( f(1) = -1 < 0 \) và \( f(2) = 12 > 0 \).
+        
+        Vì \( f \) là một hàm số liên tục trên \( [1, 2] \) và số \( N=0 \) nằm giữa \( f(1) \) và \( f(2) \), theo Định lý giá trị trung gian, phải tồn tại một số \( c \in (1, 2) \) sao cho \( f(c) = 0 \).
+        
+        Điều này chứng tỏ phương trình đã cho có ít nhất một nghiệm trong khoảng \( (1, 2) \). Ta có thể vẽ đồ thị của hàm để dự đoán và minh họa cho tính toán trên.
+    \end{solution}
+\end{example}
+
+Bằng cách thu nhỏ khoảng chắc chắn chứa nghiệm, ta có thể đưa ra một giá trị gần đúng của nghiệm, đặc biệt thuận tiện nếu ta dùng đồ thị.
+
+\subsection{Bài tập}
+
+\begin{exercise}
+    Từ đồ thị của hàm số trong Hình \ref{fig:exercise_continuity_graph}, hãy tìm các điểm tại đó hàm số không liên tục và giải thích tại sao.
+    \input{figures/tikz/chapter2 - 10 - exercise_discontinous_graph}
+\end{exercise}
+
+\begin{exercise}
+	Xét tính liên tục của hàm số tại điểm \( a \) cho trước.
+	\begin{enumerate}[label=(\alph*)]
+		\item \( f(x) = \dfrac{1}{x+2025}, \quad a = -2025 \).
+		\item \( f(x) = \begin{cases} -x^2 + x + 2 & \text{nếu } x < 1 \\ 2 - \dfrac{1}{x} & \text{nếu } x \ge 1 \end{cases}, \quad a=1 \).
+		\item \( f(x) = \begin{cases} \dfrac{x^3-x}{x^4-1} & \text{nếu } x \ne 1 \\ \dfrac{1}{2} & \text{nếu } x=1 \end{cases}, \quad a=1 \).
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+	Xét sự liên tục của các hàm số sau trên tập xác định của chúng.
+	\begin{enumerate}[label=(\alph*)]
+		\item \( f(x) = \begin{cases} x^3 + 1 & \text{nếu } x < 1 \\ \sqrt{x+3} & \text{nếu } x \ge 1 \end{cases} \).
+		\item \( f(x) = |3x - 2| \).
+		\item \( f(x) = \begin{cases} \sin\left(\dfrac{1}{x}\right) & \text{nếu } x \ne 0 \\ 0 & \text{nếu } x=0 \end{cases} \).
+		\item \( f(x) = \begin{cases} x \sin\left(\dfrac{1}{x}\right) & \text{nếu } x \ne 0 \\ 0 & \text{nếu } x=0 \end{cases} \).
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+	Cho hàm số
+	\[
+		f(x) = \begin{cases}
+			2^x & \text{nếu } x \le 0 \\
+			2-x & \text{nếu } 0 < x \le 2 \\
+			\sqrt{x-1} & \text{nếu } x > 2
+		\end{cases}
+	\]
+	Tìm các điểm gián đoạn của hàm số. Tại những điểm gián đoạn đó, hàm số liên tục bên trái, bên phải hoặc không liên tục ở bên nào cả?
+\end{exercise}
+
+\begin{exercise}
+	Ký hiệu \( \lfloor t \rfloor \) là số nguyên lớn nhất không vượt quá số thực \( t \) (phần nguyên của \( t \)). Xét hàm số \( f(x) = \lfloor 2\sin x \rfloor \). Hãy phác họa đồ thị của \( f \) trên đoạn \( [-\pi, \pi] \) và cho biết hàm \( f \) gián đoạn tại những điểm nào.
+\end{exercise}
+
+\begin{exercise}
+	Tính các giới hạn sau (nếu có):
+	\begin{enumerate}[label=(\alph*)]
+		\item \( \limit{x}{9} \dfrac{3 - \sqrt{x}}{9-x} \).
+		\item \( \limit{x}{\pi} \cos(x + \sin x) \).
+		\item \( \limit{x}{0} \dfrac{\sin(5x)}{2x} \).
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Giả sử \( f \) và \( g \) là các hàm số liên tục sao cho:
+    \begin{align*}
+        g(2) &= 2025 \\
+        \limit{x}{2} [3 f(x) g(x) &- f(x)^2] = 2 \cdot 2025^2
+    \end{align*}
+    Tính \( f(2) \).
+\end{exercise}
+
+\begin{exercise}
+	Tìm giá trị của hằng số \( c \) để hàm số sau liên tục trên \( (-\infty, \infty) \):
+	\[
+		f(x) = \begin{cases}
+			cx^2 + 3x & \text{nếu } x < 2 \\
+			x^3 - cx & \text{nếu } x \ge 2
+		\end{cases}
+	\]
+\end{exercise}
+
+\begin{exercise}
+	Tìm các giá trị của \( a \) và \( b \) để hàm số sau liên tục trên \( \R \):
+	\[
+		f(x) = \begin{cases}
+			\dfrac{x^2-4}{x-2} & \text{nếu } x < 2 \\
+			ax^2 - bx + 3 & \text{nếu } 2 \le x < 3 \\
+			4x - a + b & \text{nếu } x \ge 3
+		\end{cases}
+	\]
+\end{exercise}
+
+\subsubsection{Định lý giá trị trung gian}
+
+\begin{exercise}
+	Lúc 10 tuổi, An cao gấp rưỡi em trai Bình lúc đó 4 tuổi. Đến khi Bình 18 tuổi, Bình lại cao hơn An 5 cm. Dùng Định lý giá trị trung gian để giải thích tại sao chắc chắn có một thời điểm trong quá khứ mà hai anh em cao bằng nhau.
+\end{exercise}
+
+\begin{exercise}
+	Sử dụng Định lý giá trị trung gian để chứng tỏ rằng các phương trình sau có ít nhất một nghiệm thực.
+	\begin{enumerate}[label=(\alph*)]
+		\item \( x^5 + 3x - 5 = 0 \)
+		\item \( \sqrt[3]{x} = 1 - x \)
+		\item \( \cos x = x \)
+		\item \( \ln x = e^{-x} \)
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+	Chứng tỏ phương trình \( x^4 - 3x^3 + x - 1 = 0 \) có ít nhất một nghiệm trong khoảng \( [0, 1] \).
+\end{exercise}
+
+\begin{exercise}
+	Cho hàm số \( f(x) = x^3 + 2025 \cos x \). Chứng minh rằng tồn tại số thực \( c \) sao cho \( f(c) = 2024 \).
+\end{exercise}
+
+\begin{exercise}
+	Giả sử \( f \) là một hàm số liên tục trên đoạn \( [0, 8] \) và phương trình \( f(x) = 100 \) chỉ có đúng hai nghiệm là \( x=1 \) và \( x=5 \). Nếu \( f(3) = 120 \), hãy giải thích tại sao \( f(6) \) phải lớn hơn 100.
+\end{exercise}
+
+\begin{exercise}
+	Nếu \( a \) và \( b \) là các số thực dương, chứng minh rằng phương trình
+	\[
+		\dfrac{a}{x^5 + 3x^4 - 2} + \dfrac{b}{2x^5 + x - 3} = 0
+	\]
+	có ít nhất một nghiệm trong khoảng \( (-1, 1) \).
+\end{exercise}
+
+\begin{exercise}
+	Chứng tỏ phương trình
+	\[
+		\dfrac{1}{1-x} + \dfrac{2}{2-x} + \dfrac{3}{3-x} = 0
+	\]
+	có ít nhất hai nghiệm trên \( (1, 2) \cup (2, 3) \).
+\end{exercise}
+
+\begin{exercise}[*]
+	Chứng tỏ rằng mọi đa thức có bậc là một số nguyên dương lẻ đều có ít nhất một nghiệm thực.
+\end{exercise}
+
+\begin{exercise}[*]
+    Một nhà sư bắt đầu leo núi từ chân núi vào lúc 7:00 sáng và lên đến đỉnh núi vào lúc 7:00 tối. Nhà sư nghỉ đêm trên đỉnh núi. Sáng hôm sau, vào lúc 7:00 sáng, nhà sư bắt đầu đi xuống núi theo đúng con đường đã đi lên và về đến chân núi vào lúc 7:00 tối.
+	
+    Bằng cách sử dụng các công cụ đã học, hãy chứng minh rằng có một thời điểm trong ngày (ví dụ 3:15 chiều) mà tại đó nhà sư ở cùng một độ cao vào cả hai ngày.
+\end{exercise}

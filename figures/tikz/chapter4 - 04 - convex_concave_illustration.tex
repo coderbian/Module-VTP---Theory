@@ -1,0 +1,37 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[
+            axis lines=middle,
+            xtick=\empty,
+            ytick=\empty,
+            xlabel=$x$,
+            ylabel=$y$,
+            xmin=-5, xmax=5,
+            ymin=-1, ymax=5,
+            axis equal image,
+            samples=100,
+            domain=-4:-1,
+            width=12cm, height=8cm
+        ]
+    
+        % Convex plot
+        \addplot[purple, thick, domain=-4:-1] {0.5*(x+2.5)^2 + 1};
+        \coordinate (A1) at (axis cs:-3.8, {0.5*(-3.8+2.5)^2 + 1});
+        \coordinate (B1) at (axis cs:-1.2, {0.5*(-1.2+2.5)^2 + 1});
+        \addplot[teal, thick] coordinates {(A1) (B1)};
+        \node[below] at (axis cs:-2.5, -0.5) {Hàm lồi};
+    
+    
+        % Concave plot
+        \addplot[purple, thick, domain=1:4] {-0.5*(x-2.5)^2 + 4};
+        \coordinate (A2) at (axis cs:1.2, {-0.5*(1.2-2.5)^2 + 4});
+        \coordinate (B2) at (axis cs:3.8, {-0.5*(3.8-2.5)^2 + 4});
+        \addplot[teal, thick] coordinates {(A2) (B2)};
+        \node[below] at (axis cs:2.5, -0.5) {Hàm lõm};
+    
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Minh họa đồ thị hàm lồi (trái) và hàm lõm (phải). Trên đồ thị lồi, đoạn thẳng nối hai điểm bất kỳ luôn nằm trên đồ thị. Ngược lại đối với đồ thị lõm.}
+    \label{fig:convex-concave-illustration}
+\end{figure}

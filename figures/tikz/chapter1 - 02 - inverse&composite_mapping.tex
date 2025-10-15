@@ -1,0 +1,59 @@
+% --- Bắt đầu hình minh họa ánh xạ ngược và hợp ---
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}[
+        scale=0.9, transform shape,
+        set/.style={ellipse, draw, minimum width=2.5cm, minimum height=3cm},
+        element/.style={circle, fill, inner sep=1.5pt},
+        arrow_f/.style={->, thick, bend left=25, blue!70!black},
+        arrow_finv/.style={->, thick, bend left=25, red!70!black}
+    ]
+    % --- Hình 1: Ánh xạ ngược ---
+    \begin{scope}[xshift=2cm, yshift=0cm]
+        % Tập hợp
+        \node[set] (X) at (0,0) {};
+        \node[set] (Y) at (4,0) {};
+        \node at (0, 1.8) {$X$};
+        \node at (4, 1.8) {$Y$};
+        
+        % Phần tử
+        \node[element, label=left:$x$] (x) at (0, 0) {};
+        \node[element, label=right:$y$] (y) at (4, 0) {};
+        
+        % Mũi tên ánh xạ
+        \draw[arrow_f] (x) to node[above, sloped] {$f$} (y);
+        \draw[arrow_finv] (y) to node[below, sloped] {$f^{-1}$} (x);
+        
+        % Chú thích
+        \node at (2, -2.2) {Ánh xạ ngược};
+    \end{scope}
+    
+    % --- Hình 2: Ánh xạ hợp ---
+    \begin{scope}[yshift=-5cm]
+        % Tập hợp
+        \node[set] (X) at (0,0) {};
+        \node[set] (Y) at (4,0) {};
+        \node[set] (Z) at (8,0) {};
+        \node at (0, 1.8) {$X$};
+        \node at (4, 1.8) {$Y$};
+        \node at (8, 1.8) {$Z$};
+        
+        % Phần tử
+        \node[element, label=above:$x$] (x) at (0, 0) {};
+        \node[element, label={[label distance=-1mm]above:$f(x)$}] (y) at (4, 0) {};
+        \node[element, label=above:$g(f(x))$] (z) at (8, 0) {};
+        
+        % Mũi tên ánh xạ
+        \draw[->, thick, blue!70!black] (x) to node[above] {$f$} (y);
+        \draw[->, thick, blue!70!black] (y) to node[above] {$g$} (z);
+        \draw[->, thick, dashed, red!80!black, bend left=-40] (x) to node[below] {$g \circ f$} (z);
+        
+        % Chú thích
+        \node at (4, -2.4) {Ánh xạ hợp};
+    \end{scope}
+
+    \end{tikzpicture}
+    \caption{Minh họa ánh xạ ngược và ánh xạ hợp.}
+    \label{fig:inverse_composite}
+\end{figure}
+% --- Kết thúc hình minh họa ánh xạ ngược và hợp ---

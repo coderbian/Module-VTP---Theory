@@ -1,0 +1,29 @@
+% macros.tex
+
+% Số học cơ bản
+\newcommand{\N}{\mathbb{N}}   % Tập số tự nhiên
+\newcommand{\Z}{\mathbb{Z}}   % Tập số nguyên
+\newcommand{\Q}{\mathbb{Q}}   % Tập số hữu tỉ
+\newcommand{\R}{\mathbb{R}}   % Tập số thực
+\newcommand{\C}{\mathbb{C}}   % Tập số phức
+
+% Đại số tuyến tính
+\newcommand{\vect}[1]{\mathbf{#1}} % vector in bold
+\newcommand{\mat}[1]{\mathbf{#1}}  % matrix in bold
+\newcommand{\T}{^{\mathsf{T}}}     % chuyển vị
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Ker}{Ker}
+% \DeclareMathOperator{\Im}{Im}
+
+% Phân tích / Giải tích
+\newcommand{\dd}{\,\mathrm{d}}           % vi phân
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}} % đạo hàm
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}  % đạo hàm riêng
+\newcommand{\limit}[2]{\lim\limits_{#1 \to #2}}           % giới hạn
+\newcommand{\intt}[4]{\int_{#1}^{#2} #3 \,\mathrm{d}#4}   % tích phân có cận
+
+% Ký hiệu khác
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}   % chuẩn
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}    % giá trị tuyệt đối
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle} % tích vô hướng

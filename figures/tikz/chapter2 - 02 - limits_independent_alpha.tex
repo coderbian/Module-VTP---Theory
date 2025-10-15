@@ -1,0 +1,37 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        % (a) f(a) = L
+        \begin{scope}[xshift=-4cm]
+            \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+            \draw[->] (0,-1) -- (0,2) node[above] {$y$};
+            \draw[thick, blue] plot[smooth, tension=0.8] coordinates {(-1.2, -0.5) (-0.5, 1.2) (0.5, 0.8) (1.2, 1.5)};
+            \draw[dashed] (0.5,0) node[below] {$a$} -- (0.5,0.8) -- (0,0.8) node[left] {$L$};
+            \node[circle, fill, inner sep=1.2pt] at (0.5,0.8) {};
+            \node at (0, -1.5) {(a)};
+        \end{scope}
+
+        % (b) f(a) != L
+        \begin{scope}
+            \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+            \draw[->] (0,-1) -- (0,2) node[above] {$y$};
+            \draw[thick, blue] plot[smooth, tension=0.8] coordinates {(-1.2, -0.5) (-0.5, 1.2) (0.5, 0.8) (1.2, 1.5)};
+            \draw[dashed] (0.5,0) node[below] {$a$} -- (0.5,0.8) -- (0,0.8) node[left] {$L$};
+            \node[circle, draw, fill=white, inner sep=1.2pt] at (0.5,0.8) {};
+            \node[circle, fill, inner sep=1.2pt, blue] at (0.5, 0.2) {};
+            \node at (0, -1.5) {(b)};
+        \end{scope}
+
+        % (c) f(a) không xác định
+        \begin{scope}[xshift=4cm]
+            \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+            \draw[->] (0,-1) -- (0,2) node[above] {$y$};
+            \draw[thick, blue] plot[smooth, tension=0.8] coordinates {(-1.2, -0.5) (-0.5, 1.2) (0.5, 0.8) (1.2, 1.5)};
+            \draw[dashed] (0.5,0) node[below] {$a$} -- (0.5,0.8) -- (0,0.8) node[left] {$L$};
+            \node[circle, draw, fill=white, inner sep=1.2pt] at (0.5,0.8) {};
+            \node at (0, -1.5) {(c)};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Trong cả ba trường hợp, $\limit{x}{a} f(x) = L$.}
+    \label{fig:gioi-han-khong-phu-thuoc-f(a)}
+\end{figure}

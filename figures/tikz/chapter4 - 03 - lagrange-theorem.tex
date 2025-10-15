@@ -1,0 +1,68 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xlabel=$x$,
+            ylabel=$y$,
+            % đặt ticks tại toạ độ tương ứng của a, c, b
+            xtick={1.2,3.3,6.4},
+            xticklabels={$a$, $c$, $b$},
+            % y-ticks tại f(b) (thấp) và f(a) (cao)
+            ytick={1.1,2.1},
+            yticklabels={$f(b)$, $f(a)$},
+            ymin=0, ymax=3.6,
+            xmin=0, xmax=7.6,
+            width=12cm,
+            height=7cm,
+            clip=false,
+            every axis x label/.style={at={(axis description cs:1,0.05)},anchor=north west},
+            every axis y label/.style={at={(axis description cs:0.02,1)},anchor=south west},
+        ]
+        %--- Định nghĩa các điểm (theo axis coordinates)
+        % A = (1.2, 2.1), P = (3.3, 3.0), B = (6.4, 1.1)
+        %
+        % Đồ thị f(x) vẽ bằng danh sách toạ độ để đảm bảo A,P,B nằm chính xác trên đồ thị
+        \addplot[myblue, thick, smooth, samples=200] coordinates {
+          (1.2,2.1) (1.8,2.6) (2.4,2.9)
+          (2.9,3.0) (3.3,3.0) (3.7,2.9) (4.3,2.5) (5.2,1.9)
+          (5.8,1.4) (6.2,1.2) (6.4,1.1)
+        };
+
+        % Vẽ các điểm A, P, B (dấu chấm đen)
+        \addplot+[only marks, mark=*, mark size=1.6pt] coordinates {
+            (1.2,2.1) (3.3,3.0) (6.4,1.1)
+        };
+        % Gắn nhãn cho các điểm
+        \node[above left] at (axis cs:1.2,2.1) {A};
+        \node[above right] at (axis cs:3.3,3.0) {P};
+        \node[right] at (axis cs:6.4,1.2) {B};
+
+        %--- Cát tuyến AB (đoạn thẳng nối A và B)
+        % Tính hệ số góc: m = (1.1 - 2.1) / (6.4 - 1.2) = -0.1923076923
+        % Phương trình: y = m*x + b_chord với b_chord ≈ 2.3307692308
+        \addplot[domain=1.2:6.4, thick, black] {-0.1923076923076923*x + 2.3307692307692306};
+
+        %--- Tiếp tuyến tại P: cùng độ dốc với AB (vì muốn song song)
+        % Phương trình tiếp tuyến tại P (3.3,3.0): y = m*x + b_tan, 
+        % b_tan = 3.0 - m*3.3 ≈ 3.6346153846153846
+        \addplot[domain=0.2:6.6, thick, magenta] {-0.1923076923076923*x + 3.6346153846153846};
+
+        %--- Các đường gióng đứt nét (verticals từ a,c,b lên đồ thị; horizontals tới trục y)
+        % Verticals
+        \draw[dashed] (axis cs:1.2,0) -- (axis cs:1.2,2.1); % a up to A
+        \draw[dashed] (axis cs:3.3,0) -- (axis cs:3.3,3.0); % c up to P
+        \draw[dashed] (axis cs:6.4,0) -- (axis cs:6.4,1.1); % b up to B
+        % Horizontals to y-axis (align f(a) and f(b) to left axis)
+        \draw[dashed] (axis cs:0,2.1) -- (axis cs:1.2,2.1); % f(a)
+        \draw[dashed] (axis cs:0,1.1) -- (axis cs:6.4,1.1); % f(b) (draw long so visible)
+        
+        % Một chút chỉnh để các đường ngang nhỏ xuất hiện trên trục y
+        \draw (-0.06,2.1) -- (0.06,2.1);
+        \draw (-0.06,1.1) -- (0.06,1.1);
+        
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\centering Minh họa ý nghĩa hình học của Định lý giá trị trung bình Lagrange: hệ số góc của cát tuyến $AB$ là $\dfrac{f(b)-f(a)}{b-a}$ và có ít nhất một điểm $P$ sao cho tiếp tuyến tại điểm đó song song với cát tuyến $AB$.}
+    \label{fig:lagrange-theorem}
+\end{figure}
